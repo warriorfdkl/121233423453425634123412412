@@ -1,0 +1,75 @@
+/*
+ * Design tokens — single source of truth for color/spacing/breakpoints.
+ * Replaces 122 hardcoded #FF5C38 literals and 7 ad-hoc breakpoint values
+ * that had accumulated across the static prototype.
+ */
+:root {
+  --pf-bg: #0b0b0c;
+  --pf-bg-raised: #141416;
+  --pf-bg-card: #17171a;
+  --pf-text: #ededee;
+  --pf-text-dim-75: rgba(237, 237, 238, 0.75);
+  --pf-text-dim-65: rgba(237, 237, 238, 0.65);
+  --pf-text-dim-5: rgba(237, 237, 238, 0.5);
+  --pf-text-dim-4: rgba(237, 237, 238, 0.4);
+  /* минимум, который проходит WCAG AA (4.5:1) на фоне --pf-bg: на 0.4
+     мелкие лейблы давали 3.4:1 и не проходили */
+  --pf-text-dim-6: rgba(237, 237, 238, 0.6);
+  --pf-border: rgba(255, 255, 255, 0.08);
+  --pf-border-strong: rgba(255, 255, 255, 0.18);
+
+  --pf-accent: #ff5c38;
+  --pf-accent-hover: #ff8259;
+  --pf-accent-soft: rgba(255, 92, 56, 0.14);
+  --pf-accent-tint: #ff8b6e;
+
+  --pf-success: #8fe29a;
+
+  --pf-radius-sm: 9px;
+  --pf-radius-md: 16px;
+  --pf-radius-lg: 22px;
+  --pf-radius-pill: 99px;
+
+  --pf-font-body: 'Onest', system-ui, sans-serif;
+  --pf-font-mono: 'Roboto Mono', ui-monospace, Menlo, monospace;
+  /* heavy condensed display face for the mobile brutal-tech screens
+     (Oswald = closest Druk-alike that actually ships Cyrillic — Anton and
+     Bebas Neue look nearer but fall back on Russian text) */
+  --pf-font-display: 'Oswald', 'Onest', system-ui, sans-serif;
+
+  /*
+   * Single documented breakpoint scale. CSS custom properties cannot be
+   * referenced inside @media feature queries (a real spec limitation, not
+   * an oversight) — so these exist as the one place that defines the scale
+   * for JS (matchMedia) and as the values every literal `@media (max-width:
+   * ...)` in this app is expected to match. If you add a breakpoint, add
+   * it here first.
+   */
+  --bp-mobile: 480px;
+  --bp-tablet: 780px;
+  --bp-desktop: 1100px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--pf-bg);
+  color: var(--pf-text);
+  font-family: var(--pf-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--pf-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}

@@ -1,0 +1,18 @@
+node_modules/
+app/node_modules/
+app/dist/
+
+# Исходники 3D-модели: 144 МБ каждый FBX и 112 МБ оригинальный GLB — это выше
+# жёсткого лимита GitHub в 100 МБ на файл, репозиторий их не примет.
+# Рабочая модель (app/public/assets/tshirt.glb, 19 МБ) в репозитории есть,
+# сайту для конструктора хватает именно её. Исходники держать в облаке/у
+# заказчика — см. раздел про 3D в README.
+assets/3d/
+assets/tshirt.original.glb
+
+# дубли рабочей модели: канонический файл — app/public/assets/tshirt.glb
+assets/tshirt.glb
+
+.DS_Store
+*.local
+.vite/

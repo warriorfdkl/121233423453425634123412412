@@ -1,0 +1,16 @@
+[ 5478398ms] ReferenceError: Fragment is not defined
+    at http://127.0.0.1:5181/src/pages/HomePage.tsx?t=1784400124326:466:59
+    at Array.map (<anonymous>)
+    at HomePage (http://127.0.0.1:5181/src/pages/HomePage.tsx?t=1784400124326:466:21)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=78c15750:12866:12)
+    at renderWithHooks (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=78c15750:4213:19)
+    at updateFunctionComponent (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=78c15750:5569:16)
+    at beginWork (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=78c15750:6140:20)
+    at runWithFiberInDEV (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=78c15750:851:66)
+    at performUnitOfWork (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=78c15750:8429:92)
+    at workLoopSync (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=78c15750:8325:37)
+[ 5478395ms] [WARNING] %s
+
+%s
+ An error occurred in the <HomePage> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://127.0.0.1:5181/@vite/client:524

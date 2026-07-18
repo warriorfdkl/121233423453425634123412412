@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B0B0C}
+a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid #FF5C38;outline-offset:2px;border-radius:8px}
+.pf-burger{display:none}
+.pf-nav-drawer{display:none}
+@media (max-width:760px){
+  .pf-nav-links{display:none!important}
+  .pf-nav-name{display:none!important}
+  .pf-burger{display:grid}
+  .pf-nav-cb:checked ~ .pf-nav-drawer{display:flex}
+}
+@media (max-width:900px){
+  .pf-body-grid{grid-template-columns:1fr!important}
+  .pf-body-grid>*{min-width:0!important}
+  .pf-sidebar{position:static!important}
+  .pf-product-grid{grid-template-columns:repeat(2,1fr)!important}
+}
+@media (max-width:420px){
+  .pf-product-grid{grid-template-columns:1fr!important}
+}
+@media (max-width:640px){.pf-footer-grid{grid-template-columns:1fr!important;gap:32px!important}}
+.pf-range{-webkit-appearance:none;appearance:none;background:transparent;width:100%;height:20px;pointer-events:none;margin:0}
+.pf-range::-webkit-slider-runnable-track{background:transparent;height:20px}
+.pf-range::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:16px;height:16px;border-radius:50%;background:#FF5C38;box-shadow:0 0 0 3px #0B0B0C;margin-top:2px;cursor:pointer}
+.pf-range::-moz-range-track{background:transparent;height:20px;border:none}
+.pf-range::-moz-range-thumb{pointer-events:auto;width:16px;height:16px;border:none;border-radius:50%;background:#FF5C38;box-shadow:0 0 0 3px #0B0B0C;cursor:pointer}
+</style>
+</helmet>
+<div data-screen-label="Каталог готовых дизайнов" style="min-height:100vh;background:repeating-linear-gradient(115deg,rgba(255,92,56,.055) 0px,rgba(255,92,56,.055) 1px,transparent 1px,transparent 68px),repeating-linear-gradient(115deg,rgba(237,237,238,.03) 0px,rgba(237,237,238,.03) 1px,transparent 1px,transparent 68px) 34px 0,#0B0B0C;color:#EDEDEE;font-family:'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+
+  <!-- NAV -->
+  <div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:clamp(8px,1.5vw,28px);padding:0 clamp(20px,3vw,48px);height:clamp(60px,6vw,80px);background:linear-gradient(180deg,rgba(11,11,12,.85),rgba(11,11,12,.5));backdrop-filter:blur(10px);box-sizing:border-box;max-width:1800px;margin:0 auto">
+    <div style="display:flex;align-items:center;gap:clamp(28px,4vw,64px);min-width:0">
+      <a href="desktop.html" style="display:block;flex:none"><img src="assets/logo-white-coral.svg" alt="Printfee" style="height:clamp(20px,2.4vw,32px);display:block"></a>
+      <div class="pf-nav-links" style="display:flex;align-items:center;gap:clamp(14px,2vw,44px);font-size:clamp(13.5px,1.15vw,19px);font-weight:700;color:#EDEDEE;white-space:nowrap;min-width:0">
+        <a href="constructor.html" style="color:inherit;text-decoration:none" style-hover="color:#FF8259">Конструктор</a>
+        <a href="catalog.html" style="color:#FF5C38;text-decoration:none">Макет за вас</a>
+        <a href="desktop.html#news" style="color:inherit;text-decoration:none" style-hover="color:#FF8259">Новости</a>
+        <a href="desktop.html#footer" style="color:inherit;text-decoration:none" style-hover="color:#FF8259">Контакты</a>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:0;flex:none">
+      <a href="favorites.html" aria-label="Избранное" style="width:clamp(38px,4.6vw,52px);height:clamp(38px,4.6vw,52px);border-radius:50%;display:grid;place-items:center;color:#EDEDEE;text-decoration:none" style-hover="background:rgba(255,255,255,.08)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EDEDEE" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.5l2.47 5.18 5.53.62-4.1 3.9 1.08 5.6L12 15.9l-4.98 2.9 1.08-5.6-4.1-3.9 5.53-.62L12 3.5z"></path></svg>
+      </a>
+      <a href="cart.html" aria-label="Корзина" style="width:clamp(38px,4.6vw,52px);height:clamp(38px,4.6vw,52px);border-radius:50%;display:grid;place-items:center;color:#EDEDEE;text-decoration:none" style-hover="background:rgba(255,255,255,.08)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EDEDEE" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h12l-1 12.5a1 1 0 0 1-1 .9H8a1 1 0 0 1-1-.9L6 8z"></path><path d="M9 8V6.5a3 3 0 0 1 6 0V8"></path></svg>
+      </a>
+      <a href="account.html" aria-label="Личный кабинет: Алина" style="display:flex;align-items:center;gap:8px;height:clamp(38px,4.6vw,52px);padding:0 16px 0 clamp(7px,1vw,12px);border-radius:99px;color:#EDEDEE;text-decoration:none" style-hover="background:rgba(255,255,255,.08)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EDEDEE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"></circle><path d="M4.5 20c0-4.1 3.5-6.3 7.5-6.3s7.5 2.2 7.5 6.3"></path></svg>
+        <span class="pf-nav-name" style="font-weight:600;font-size:14px;white-space:nowrap">Алина</span>
+      </a>
+      <label for="pfNavCb" class="pf-burger" aria-label="Меню" style="width:38px;height:38px;border-radius:50%;place-items:center;color:#EDEDEE;cursor:pointer;flex:none" style-hover="background:rgba(255,255,255,.08)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EDEDEE" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </label>
+    </div>
+    <input type="checkbox" id="pfNavCb" class="pf-nav-cb" style="display:none">
+    <div class="pf-nav-drawer" style="position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#0B0B0C;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:8px clamp(20px,3vw,48px) 16px;font-weight:700;font-size:16px">
+      <a href="constructor.html" style="display:block;padding:14px 0;color:#EDEDEE;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.06)">Конструктор</a>
+      <a href="catalog.html" style="display:block;padding:14px 0;color:#FF5C38;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.06)">Макет за вас</a>
+      <a href="desktop.html#news" style="display:block;padding:14px 0;color:#EDEDEE;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.06)">Новости</a>
+      <a href="desktop.html#footer" style="display:block;padding:14px 0;color:#EDEDEE;text-decoration:none">Контакты</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div style="max-width:1800px;margin:0 auto;padding:clamp(92px,10vw,120px) clamp(20px,3vw,48px) 0;box-sizing:border-box">
+    <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(237,237,238,.65);margin-bottom:28px">
+      <a href="desktop.html" style="color:inherit;text-decoration:none" style-hover="color:#EDEDEE">Главная</a>
+      <span>/</span>
+      <span style="color:rgba(237,237,238,.75)">Готовые дизайны</span>
+    </div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:8px">
+      <h1 style="margin:0;font-weight:500;font-size:clamp(34px,3.6vw,54px);line-height:1.05;letter-spacing:-.02em">Готовые дизайны</h1>
+      <p style="margin:0 0 6px;font-size:16px;line-height:1.6;font-weight:300;color:rgba(237,237,238,.62);max-width:44ch">Принты уже придуманы и проверены на печати — выбирай футболку, подставь своё фото или текст, если хочется, и оформляй за пару минут.</p>
+    </div>
+  </div>
+
+  <!-- CATEGORY PILLS -->
+  <div style="max-width:1800px;margin:0 auto;padding:28px clamp(20px,3vw,48px) 0;box-sizing:border-box">
+    <div style="display:flex;gap:10px;overflow-x:auto;padding-bottom:6px">
+      <sc-for list="{{ categoryPills }}" as="c" hint-placeholder-count="7">
+        <button type="button" onClick="{{ c.onPick }}" style="flex:none;height:40px;padding:0 18px;border-radius:99px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};font-weight:600;font-size:13.5px;cursor:pointer;white-space:nowrap">{{ c.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="pf-body-grid" style="max-width:1800px;margin:0 auto;padding:28px clamp(20px,3vw,48px) 140px;box-sizing:border-box;display:grid;grid-template-columns:264px 1fr;gap:48px;align-items:start">
+
+    <!-- SIDEBAR -->
+    <aside class="pf-sidebar" style="position:sticky;top:clamp(76px,8vw,96px);display:flex;flex-direction:column;gap:32px;padding:28px 0">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="font:600 11px ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,237,238,.65)">Фильтры</div>
+        <button type="button" onClick="{{ resetFilters }}" style="border:none;background:none;padding:0;font-size:12.5px;font-weight:600;color:#FF8B6E;cursor:pointer">Сбросить</button>
+      </div>
+
+      <div>
+        <div style="font-weight:600;font-size:14px;margin-bottom:14px">Категория</div>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ categoryFilters }}" as="c" hint-placeholder-count="6">
+            <div onClick="{{ c.onPick }}" style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(237,237,238,.75);cursor:pointer">
+              <span style="width:16px;height:16px;border-radius:5px;border:1.5px solid {{ c.border }};background:{{ c.bg }};flex:none;display:grid;place-items:center;color:#0B0B0C;font-size:11px;font-weight:700;line-height:1">{{ c.mark }}</span>
+              <span style="flex:1">{{ c.label }}</span>
+              <span style="color:rgba(237,237,238,.6);font-size:12px">{{ c.count }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-weight:600;font-size:14px;margin-bottom:14px">Размер</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <sc-for list="{{ sizeFilters }}" as="s" hint-placeholder-count="6">
+            <div onClick="{{ s.onPick }}" style="height:36px;border-radius:9px;border:1px solid {{ s.border }};background:{{ s.bg }};display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;color:{{ s.fg }};cursor:pointer" style-hover="border-color:rgba(255,255,255,.4)">{{ s.label }}</div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-weight:600;font-size:14px;margin-bottom:14px">Цвет</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <sc-for list="{{ colorFilters }}" as="c" hint-placeholder-count="7">
+            <span onClick="{{ c.onPick }}" style="width:24px;height:24px;border-radius:50%;background:{{ c.hex }};border:{{ c.ring }};cursor:pointer;display:block"></span>
+          </sc-for>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <div style="font-weight:600;font-size:14px">Цена</div>
+          <div style="font-size:12.5px;color:rgba(237,237,238,.5)">{{ priceLabel }}</div>
+        </div>
+        <div style="position:relative;height:20px;margin:6px 1px 0">
+          <div style="position:absolute;left:0;right:0;top:8px;height:3px;border-radius:2px;background:rgba(255,255,255,.14)"></div>
+          <div style="position:absolute;left:{{ priceMinPct }}%;width:{{ priceWidthPct }}%;top:8px;height:3px;border-radius:2px;background:#FF5C38"></div>
+          <input type="range" min="{{ priceBoundMin }}" max="{{ priceBoundMax }}" value="{{ priceMin }}" onChange="{{ onPriceMinInput }}" aria-label="Минимальная цена" class="pf-range" style="position:absolute;left:0;right:0;top:0;margin:0">
+          <input type="range" min="{{ priceBoundMin }}" max="{{ priceBoundMax }}" value="{{ priceMax }}" onChange="{{ onPriceMaxInput }}" aria-label="Максимальная цена" class="pf-range" style="position:absolute;left:0;right:0;top:0;margin:0">
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:24px">
+        <div style="font-size:14px;color:rgba(237,237,238,.5)">{{ resultsCountLabel }}</div>
+        <div style="display:flex;align-items:center;gap:8px;max-width:100%;overflow-x:auto">
+          <sc-for list="{{ sortOptions }}" as="o" hint-placeholder-count="3">
+            <button type="button" onClick="{{ o.onPick }}" style="flex:none;height:36px;padding:0 16px;border-radius:99px;border:1px solid {{ o.border }};background:{{ o.bg }};color:{{ o.fg }};font-weight:600;font-size:12.5px;cursor:pointer;white-space:nowrap">{{ o.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div class="pf-product-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="12">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="position:relative;aspect-ratio:4/5;border-radius:20px;background:#141416;border:1px solid rgba(255,255,255,.07);overflow:hidden">
+              <sc-if value="{{ p.badge }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;top:12px;left:12px;z-index:2;padding:5px 10px;border-radius:99px;background:{{ p.badgeBg }};color:{{ p.badgeFg }};font-weight:700;font-size:10.5px;letter-spacing:.02em">{{ p.badge }}</div>
+              </sc-if>
+              <button type="button" onClick="{{ p.onWish }}" aria-label="В избранное" style="position:absolute;top:10px;right:10px;z-index:2;width:32px;height:32px;border-radius:50%;border:none;background:rgba(11,11,12,.55);backdrop-filter:blur(6px);display:grid;place-items:center;cursor:pointer;padding:0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ p.wishFill }}" stroke="{{ p.wishStroke }}" stroke-width="1.9"><path d="M12 21C12 21 4 15.5 4 9.8C4 6.6 6.5 4.5 9 4.5C10.5 4.5 11.5 5.3 12 6.2C12.5 5.3 13.5 4.5 15 4.5C17.5 4.5 20 6.6 20 9.8C20 15.5 12 21 12 21Z"></path></svg>
+              </button>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16% 18% 8%">
+                <img src="assets/garment-tshirt-front.png" alt="{{ p.name }}" style="width:100%;height:100%;object-fit:contain;filter:{{ p.filter }}">
+              </div>
+              <div style="position:absolute;left:50%;top:36%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;gap:5px;padding:7px 11px;border-radius:8px;background:{{ p.decalBg }}">
+                {{ p.decal }}
+              </div>
+              <button type="button" onClick="{{ p.onAdd }}" aria-label="В корзину" style="position:absolute;bottom:12px;right:12px;z-index:2;width:38px;height:38px;border-radius:50%;border:none;background:#FF5C38;display:grid;place-items:center;cursor:pointer;padding:0" style-hover="background:#FF7A54">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="2"><path d="M6 7h12l-1 13H7L6 7z"></path><path d="M9 7a3 3 0 0 1 6 0"></path></svg>
+              </button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:center;gap:6px">
+                <sc-for list="{{ p.swatches }}" as="sw" hint-placeholder-count="3">
+                  <span style="width:13px;height:13px;border-radius:50%;background:{{ sw }};border:1px solid rgba(255,255,255,.2);display:block"></span>
+                </sc-for>
+              </div>
+              <div style="font-weight:600;font-size:14.5px;letter-spacing:-.005em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ p.name }}</div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-weight:700;font-size:15.5px">{{ p.price }}</span>
+                <sc-if value="{{ p.oldPrice }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:13px;color:rgba(237,237,238,.6);text-decoration:line-through">{{ p.oldPrice }}</span>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:80px 20px;text-align:center;color:rgba(237,237,238,.5);font-size:15px">По этому фильтру пока ничего нет — попробуй выбрать другую категорию.</div>
+      </sc-if>
+
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:56px">
+        <sc-for list="{{ pages }}" as="pg" hint-placeholder-count="4">
+          <button type="button" style="width:38px;height:38px;border-radius:50%;border:1px solid {{ pg.border }};background:{{ pg.bg }};color:{{ pg.fg }};font-weight:600;font-size:13.5px;cursor:pointer">{{ pg.label }}</button>
+        </sc-for>
+        <span style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:rgba(237,237,238,.6)">→</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="border-top:1px solid rgba(255,255,255,.1);padding:80px clamp(20px,3vw,48px) 40px">
+    <div style="max-width:1800px;margin:0 auto">
+      <div class="pf-footer-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:90px">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <img src="assets/logo-white-coral.svg" alt="Printfee" style="height:20px;display:block;align-self:flex-start">
+          <div style="font-size:14.5px;font-weight:300;line-height:1.6;color:rgba(237,237,238,.55);max-width:28ch">Печать футболок с твоим дизайном. Казань, доставка по всей России.</div>
+          <div style="display:flex;gap:12px">
+            <a href="desktop.html#footer" style="width:38px;height:38px;border-radius:50%;border:1px solid #FF5C38;display:grid;place-items:center;color:#FF5C38;text-decoration:none;font-size:12px;font-weight:600" style-hover="background:#FF5C38;color:#0B0B0C">TG</a>
+            <a href="desktop.html#footer" style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;color:rgba(237,237,238,.7);text-decoration:none;font-size:12px;font-weight:500" style-hover="border-color:rgba(255,255,255,.5)">VK</a>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;font-size:14.5px">
+          <div style="color:rgba(237,237,238,.6);margin-bottom:4px">Сервис</div>
+          <a href="constructor.html" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">Конструктор</a>
+          <a href="catalog.html" style="color:#FF8B6E;text-decoration:none">Макет за вас</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;font-size:14.5px">
+          <div style="color:rgba(237,237,238,.6);margin-bottom:4px">Компания</div>
+          <a href="desktop.html#footer" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">О нас</a>
+          <a href="desktop.html#footer" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">Отзывы</a>
+          <a href="desktop.html#news" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">Блог</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;font-size:14.5px">
+          <div style="color:rgba(237,237,238,.6);margin-bottom:4px">Помощь</div>
+          <a href="desktop.html#footer" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">FAQ</a>
+          <a href="desktop.html#footer" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">Доставка и оплата</a>
+          <a href="desktop.html#footer" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">hello@printfee.ru</a>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);padding-top:28px;font-size:13px;font-weight:300;color:rgba(237,237,238,.6)">
+        <div>© Printfee 2026. Все права защищены</div>
+        <div style="display:flex;gap:24px">
+          <a href="desktop.html#footer" style="color:inherit;text-decoration:none">Политика конфиденциальности</a>
+          <a href="desktop.html#footer" style="color:inherit;text-decoration:none">Оферта</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { category: 'Все', sort: 'pop', wish: {}, sizes: {}, color: null, priceMin: null, priceMax: null };
+
+  pickCategory = (name) => (e) => { e.preventDefault(); this.setState({ category: name }); };
+  pickSort = (key) => (e) => { e.preventDefault(); this.setState({ sort: key }); };
+  toggleWish = (id) => (e) => {
+    e.preventDefault();
+    this.setState(s => ({ wish: { ...s.wish, [id]: !s.wish[id] } }));
+  };
+  pickSize = (label) => (e) => {
+    e.preventDefault();
+    this.setState(s => ({ sizes: { ...s.sizes, [label]: !s.sizes[label] } }));
+  };
+  pickColor = (hex) => (e) => {
+    e.preventDefault();
+    this.setState(s => ({ color: s.color === hex ? null : hex }));
+  };
+  onPriceMinInput = (e) => {
+    const v = Number(e.target.value);
+    this.setState(s => ({ priceMin: Math.min(v, s.priceMax ?? v) }));
+  };
+  onPriceMaxInput = (e) => {
+    const v = Number(e.target.value);
+    this.setState(s => ({ priceMax: Math.max(v, s.priceMin ?? v) }));
+  };
+  resetFilters = (e) => {
+    e.preventDefault();
+    this.setState({ category: 'Все', sort: 'pop', sizes: {}, color: null, priceMin: null, priceMax: null });
+  };
+  noop = (e) => e.preventDefault();
+
+  pluralize(n) {
+    const mod10 = n % 10, mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return 'дизайн';
+    if ([2, 3, 4].includes(mod10) && ![12, 13, 14].includes(mod100)) return 'дизайна';
+    return 'дизайнов';
+  }
+
+  icon(name, stroke, fill) {
+    if (name === 'camera') {
+      return React.createElement('svg', { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none', stroke, strokeWidth: 1.9 },
+        React.createElement('path', { d: 'M4 8h3l2-2h6l2 2h3v11H4z' }),
+        React.createElement('circle', { cx: 12, cy: 13, r: 3.2 })
+      );
+    }
+    return React.createElement('svg', { width: 14, height: 14, viewBox: '0 0 24 24', fill, stroke: 'none' },
+      React.createElement('path', { d: 'M12 21C12 21 4 15.5 4 9.8C4 6.6 6.5 4.5 9 4.5C10.5 4.5 11.5 5.3 12 6.2C12.5 5.3 13.5 4.5 15 4.5C17.5 4.5 20 6.6 20 9.8C20 15.5 12 21 12 21Z' })
+    );
+  }
+
+  text(value, color) {
+    return React.createElement('span', { style: { fontFamily: "'Unbounded',sans-serif", fontWeight: 700, fontSize: '11px', letterSpacing: '.02em', color, whiteSpace: 'nowrap' } }, value);
+  }
+
+  allProducts() {
+    return [
+      { id: 1, name: 'Просто вайб', category: 'Мемы', price: '1 490 ₽', oldPrice: null, badge: 'Хит', badgeBg: '#FF5C38', badgeFg: '#0B0B0C', filter: 'brightness(0.22) contrast(1.1)', decalBg: 'rgba(255,92,56,.92)', decal: this.text('VIBE', '#0B0B0C'), swatches: ['#141416', '#EDEDEE', '#FF5C38'] },
+      { id: 2, name: 'На созвоне', category: 'Мемы', price: '1 390 ₽', oldPrice: null, badge: null, filter: 'sepia(1) saturate(3.4) hue-rotate(-45deg) brightness(1.05)', decalBg: 'rgba(11,11,12,.88)', decal: this.text('LOL', '#EDEDEE'), swatches: ['#C9A377', '#141416', '#EDEDEE'] },
+      { id: 3, name: 'Меньше — лучше', category: 'Минимализм', price: '1 590 ₽', oldPrice: null, badge: null, filter: 'none', decalBg: 'rgba(11,11,12,.85)', decal: this.text('MONO', '#EDEDEE'), swatches: ['#EDEDEE', '#141416', '#8C8C90'] },
+      { id: 4, name: 'Линия', category: 'Минимализм', price: '1 490 ₽', oldPrice: null, badge: 'Новинка', badgeBg: '#EDEDEE', badgeFg: '#0B0B0C', filter: 'brightness(0.42) contrast(1.05) saturate(.3)', decalBg: 'rgba(237,237,238,.92)', decal: this.text('LESS', '#0B0B0C'), swatches: ['#8C8C90', '#EDEDEE', '#C9A377'] },
+      { id: 5, name: 'Он & Она', category: 'Для пары', price: '1 690 ₽', oldPrice: null, badge: 'Хит', badgeBg: '#FF5C38', badgeFg: '#0B0B0C', filter: 'sepia(1) saturate(6) hue-rotate(-15deg) brightness(0.9)', decalBg: 'rgba(237,237,238,.92)', decal: this.text('US', '#0B0B0C'), swatches: ['#FF5C38', '#EDEDEE', '#141416'] },
+      { id: 6, name: 'Половинки', category: 'Для пары', price: '1 690 ₽', oldPrice: null, badge: null, filter: 'sepia(1) saturate(3.5) hue-rotate(200deg) brightness(0.95)', decalBg: 'rgba(237,237,238,.92)', decal: this.text('TWO', '#0B0B0C'), swatches: ['#8E86D6', '#EDEDEE', '#141416'] },
+      { id: 7, name: 'Команда 2026', category: 'Мерч команды', price: '1 790 ₽', oldPrice: null, badge: 'Хит', badgeBg: '#FF5C38', badgeFg: '#0B0B0C', filter: 'brightness(0.22) contrast(1.1)', decalBg: 'rgba(255,92,56,.92)', decal: this.text('TEAM', '#0B0B0C'), swatches: ['#141416', '#FF5C38', '#8C8C90'] },
+      { id: 8, name: 'Свой номер', category: 'Мерч команды', price: '1 790 ₽', oldPrice: null, badge: null, filter: 'sepia(1) saturate(3.2) hue-rotate(55deg) brightness(0.82)', decalBg: 'rgba(237,237,238,.92)', decal: this.text('07', '#0B0B0C'), swatches: ['#7C8B6F', '#141416', '#EDEDEE'] },
+      { id: 9, name: 'Твой кадр', category: 'С фото', price: '1 990 ₽', oldPrice: '2 340 ₽', badge: '-15%', badgeBg: '#FF5C38', badgeFg: '#0B0B0C', filter: 'none', decalBg: 'rgba(11,11,12,.85)', decal: this.icon('camera', '#EDEDEE'), swatches: ['#EDEDEE', '#141416', '#C9A377'] },
+      { id: 10, name: 'Momento', category: 'С фото', price: '1 990 ₽', oldPrice: null, badge: null, filter: 'sepia(1) saturate(3.4) hue-rotate(-45deg) brightness(1.05)', decalBg: 'rgba(11,11,12,.85)', decal: this.icon('camera', '#EDEDEE'), swatches: ['#C9A377', '#EDEDEE', '#141416'] },
+      { id: 11, name: 'Нежность', category: 'Для неё', price: '1 590 ₽', oldPrice: null, badge: null, filter: 'sepia(1) saturate(3.5) hue-rotate(200deg) brightness(0.95)', decalBg: 'rgba(237,237,238,.92)', decal: this.icon('heart', 'none', '#FF5C38'), swatches: ['#8E86D6', '#EDEDEE', '#FF5C38'] },
+      { id: 12, name: 'Для мамы', category: 'Для неё', price: '1 590 ₽', oldPrice: null, badge: 'Хит', badgeBg: '#FF5C38', badgeFg: '#0B0B0C', filter: 'sepia(1) saturate(6) hue-rotate(-15deg) brightness(0.9)', decalBg: 'rgba(237,237,238,.92)', decal: this.icon('heart', 'none', '#FF5C38'), swatches: ['#FF5C38', '#EDEDEE', '#141416'] }
+    ];
+  }
+
+  renderVals() {
+    const all = this.allProducts();
+    const priceNum = (p) => parseInt(p.price.replace(/\D/g, ''), 10);
+    const allPrices = all.map(priceNum);
+    const priceBoundMin = Math.min(...allPrices);
+    const priceBoundMax = Math.max(...allPrices);
+    const priceMin = this.state.priceMin ?? priceBoundMin;
+    const priceMax = this.state.priceMax ?? priceBoundMax;
+
+    let filtered = this.state.category === 'Все' ? all : all.filter(p => p.category === this.state.category);
+    if (this.state.color) filtered = filtered.filter(p => p.swatches.includes(this.state.color));
+    filtered = filtered.filter(p => { const pn = priceNum(p); return pn >= priceMin && pn <= priceMax; });
+
+    const sorted = [...filtered].sort((a, b) => {
+      if (this.state.sort === 'cheap') return priceNum(a) - priceNum(b);
+      if (this.state.sort === 'exp') return priceNum(b) - priceNum(a);
+      return 0;
+    });
+
+    const products = sorted.map(p => ({
+      ...p,
+      wishFill: this.state.wish[p.id] ? '#FF5C38' : 'none',
+      wishStroke: this.state.wish[p.id] ? '#FF5C38' : '#EDEDEE',
+      onWish: this.toggleWish(p.id),
+      onAdd: this.noop
+    }));
+
+    const cats = ['Все', 'Мемы', 'Минимализм', 'Для пары', 'Мерч команды', 'С фото', 'Для неё'];
+    const categoryPills = cats.map(c => ({
+      label: c,
+      onPick: this.pickCategory(c),
+      bg: this.state.category === c ? '#FF5C38' : 'transparent',
+      fg: this.state.category === c ? '#0B0B0C' : '#EDEDEE',
+      border: this.state.category === c ? '#FF5C38' : 'rgba(255,255,255,.16)'
+    }));
+
+    const counts = {};
+    all.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
+    const categoryFilters = cats.filter(c => c !== 'Все').map(label => {
+      const checked = this.state.category === label;
+      return {
+        label,
+        count: counts[label] || 0,
+        checked,
+        mark: checked ? '✓' : '',
+        bg: checked ? '#FF5C38' : 'transparent',
+        border: checked ? '#FF5C38' : 'rgba(255,255,255,.25)',
+        onPick: this.pickCategory(checked ? 'Все' : label)
+      };
+    });
+
+    const sortDefs = [{ k: 'pop', l: 'По популярности' }, { k: 'cheap', l: 'Сначала дешевле' }, { k: 'exp', l: 'Сначала дороже' }];
+    const sortOptions = sortDefs.map(s => ({
+      label: s.l,
+      onPick: this.pickSort(s.k),
+      bg: this.state.sort === s.k ? '#FF5C38' : 'transparent',
+      fg: this.state.sort === s.k ? '#0B0B0C' : 'rgba(237,237,238,.75)',
+      border: this.state.sort === s.k ? '#FF5C38' : 'rgba(255,255,255,.16)'
+    }));
+
+    const sizeFilters = ['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(label => {
+      const active = !!this.state.sizes[label];
+      return {
+        label,
+        onPick: this.pickSize(label),
+        border: active ? '#FF5C38' : 'rgba(255,255,255,.14)',
+        bg: active ? 'rgba(255,92,56,.14)' : 'transparent',
+        fg: active ? '#FF5C38' : 'rgba(237,237,238,.7)'
+      };
+    });
+
+    const colorFilters = ['#EDEDEE', '#141416', '#FF5C38', '#C9A377', '#7C8B6F', '#8E86D6', '#8C8C90'].map(hex => ({
+      hex,
+      onPick: this.pickColor(hex),
+      ring: this.state.color === hex ? '2px solid #FF5C38' : '1px solid rgba(255,255,255,.18)'
+    }));
+
+    const pct = (v) => priceBoundMax === priceBoundMin ? 0 : ((v - priceBoundMin) / (priceBoundMax - priceBoundMin)) * 100;
+
+    return {
+      products,
+      categoryPills,
+      categoryFilters,
+      sortOptions,
+      resetFilters: this.resetFilters,
+      isEmpty: products.length === 0,
+      resultsCountLabel: `${products.length} ${this.pluralize(products.length)}`,
+      sizeFilters,
+      colorFilters,
+      priceBoundMin,
+      priceBoundMax,
+      priceMin,
+      priceMax,
+      priceMinPct: pct(priceMin),
+      priceWidthPct: pct(priceMax) - pct(priceMin),
+      priceLabel: `${priceMin.toLocaleString('ru-RU')} — ${priceMax.toLocaleString('ru-RU')} ₽`,
+      onPriceMinInput: this.onPriceMinInput,
+      onPriceMaxInput: this.onPriceMaxInput,
+      pages: [1, 2, 3, 4].map(n => ({
+        label: String(n),
+        bg: n === 1 ? '#FF5C38' : 'transparent',
+        fg: n === 1 ? '#0B0B0C' : '#EDEDEE',
+        border: n === 1 ? '#FF5C38' : 'rgba(255,255,255,.16)'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

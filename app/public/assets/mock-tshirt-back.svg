@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532 604">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"></stop>
+      <stop offset=".55" stop-color="#F8F8F9"></stop>
+      <stop offset="1" stop-color="#EFEFF1"></stop>
+    </linearGradient>
+    <linearGradient id="sideL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000000" stop-opacity=".08"></stop>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"></stop>
+    </linearGradient>
+    <linearGradient id="sideR" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#000000" stop-opacity=".08"></stop>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"></stop>
+    </linearGradient>
+    <radialGradient id="backlight" cx=".5" cy=".38" r=".65">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".5"></stop>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"></stop>
+    </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+    </filter>
+  <clipPath id="clip"><path d="M196,54 C220,40 312,40 336,54 L438,92 C472,112 498,158 508,202 C510,210 508,216 500,221 L462,244 C455,248 447,246 442,238 C432,222 420,210 404,200 C406,320 402,450 412,548 C414,558 410,564 400,568 C352,584 180,584 132,568 C122,564 118,558 120,548 C130,450 126,320 128,200 C112,210 100,222 90,238 C85,246 77,248 70,244 L32,221 C24,216 22,210 24,202 C34,158 60,112 94,92 Z"></path></clipPath></defs>
+
+  <path fill="url(#body)" d="M196,54 C220,40 312,40 336,54 L438,92 C472,112 498,158 508,202 C510,210 508,216 500,221 L462,244 C455,248 447,246 442,238 C432,222 420,210 404,200 C406,320 402,450 412,548 C414,558 410,564 400,568 C352,584 180,584 132,568 C122,564 118,558 120,548 C130,450 126,320 128,200 C112,210 100,222 90,238 C85,246 77,248 70,244 L32,221 C24,216 22,210 24,202 C34,158 60,112 94,92 Z"></path><g clip-path="url(#clip)">
+
+  <path fill="url(#sideL)" d="M128,200 C130,320 126,450 120,548 C119,556 122,562 132,566 L164,556 C158,450 162,320 160,208 Z" filter="url(#soft)"></path>
+  <path fill="url(#sideR)" d="M404,200 C402,320 406,450 412,548 C413,556 410,562 400,566 L368,556 C374,450 370,320 372,208 Z" filter="url(#soft)"></path>
+
+  <path fill="#000" opacity=".03" filter="url(#soft)" d="M128,200 C118,208 106,220 96,234 L118,246 C128,230 138,218 148,212 Z"></path>
+  <path fill="#000" opacity=".03" filter="url(#soft)" d="M404,200 C414,208 426,220 436,234 L414,246 C404,230 394,218 384,212 Z"></path>
+
+  <ellipse cx="266" cy="230" rx="150" ry="120" fill="url(#backlight)"></ellipse>
+
+  
+  <path fill="none" stroke="#000" stroke-opacity=".035" stroke-width="8" stroke-linecap="round" filter="url(#soft)" d="M266,140 C266,260 264,420 266,540"></path>
+  <path fill="none" stroke="#000" stroke-opacity=".045" stroke-width="7" stroke-linecap="round" filter="url(#soft)" d="M190,360 C204,392 208,440 204,486"></path>
+  <path fill="none" stroke="#000" stroke-opacity=".045" stroke-width="7" stroke-linecap="round" filter="url(#soft)" d="M344,368 C332,398 328,444 332,490"></path>
+
+  <path fill="none" stroke="#000" stroke-opacity=".09" stroke-width="2.5" d="M94,92 C120,122 127,160 128,200"></path>
+  <path fill="none" stroke="#000" stroke-opacity=".09" stroke-width="2.5" d="M438,92 C412,122 405,160 404,200"></path>
+  <path fill="none" stroke="#000" stroke-opacity=".08" stroke-width="2.5" d="M38,230 C52,214 70,202 90,196"></path>
+  <path fill="none" stroke="#000" stroke-opacity=".08" stroke-width="2.5" d="M494,230 C480,214 462,202 442,196"></path>
+  <path fill="none" stroke="#000" stroke-opacity=".07" stroke-width="2.5" d="M126,552 C180,570 352,570 406,552"></path>
+
+  
+  <path fill="#DEDEE1" d="M204,53 C236,74 296,74 328,53 C298,42 234,42 204,53 Z"></path>
+  <path fill="none" stroke="#EFEFF1" stroke-width="10" stroke-linecap="round" d="M206,55 C238,74 294,74 326,55"></path>
+  <path fill="none" stroke="#000" stroke-opacity=".1" stroke-width="2" d="M202,60 C236,84 296,84 330,60"></path>
+</g></svg>

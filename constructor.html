@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="vendor/three/three.min.js"></script>
+<script src="vendor/three/GLTFLoader.js"></script>
+<script src="vendor/three/DecalGeometry.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html{scrollbar-gutter:stable;overscroll-behavior-y:none}
+body{margin:0;background:#0B0B0C;overscroll-behavior-y:none;overflow-x:hidden}
+input[type="range"]{-webkit-appearance:none;background:transparent}
+input[type="range"]::-webkit-slider-runnable-track{height:3px;background:rgba(255,255,255,.18);border-radius:2px}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#FF5C38;margin-top:-6.5px}
+@keyframes pf-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes pf-pulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid #FF5C38;outline-offset:2px;border-radius:8px}
+.pf-burger{display:none}
+.pf-nav-drawer{display:none}
+@media (max-width:760px){
+  .pf-nav-links{display:none!important}
+  .pf-nav-name{display:none!important}
+  .pf-burger{display:grid}
+  .pf-nav-cb:checked ~ .pf-nav-drawer{display:flex}
+}
+@media (max-width:900px){
+  .pf-builder-grid{grid-template-columns:1fr!important}
+  .pf-builder-grid>*{min-width:0!important}
+  .pf-builder-panel{position:static!important}
+}
+@media (max-width:480px){
+  .pf-builder-title{white-space:normal!important}
+}
+@media (max-width:640px){.pf-footer-grid{grid-template-columns:1fr!important;gap:32px!important}}
+</style>
+</helmet>
+<div style="position:relative;min-height:100vh;background:repeating-linear-gradient(115deg,rgba(255,92,56,.055) 0px,rgba(255,92,56,.055) 1px,transparent 1px,transparent 68px),repeating-linear-gradient(115deg,rgba(237,237,238,.03) 0px,rgba(237,237,238,.03) 1px,transparent 1px,transparent 68px) 34px 0,#0B0B0C;color:#EDEDEE;font-family:'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+
+  <!-- NAV -->
+  <div style="position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:clamp(8px,1.5vw,28px);padding:0 clamp(20px,3vw,48px);height:clamp(60px,6vw,80px);background:linear-gradient(180deg,rgba(11,11,12,.85),rgba(11,11,12,.5));backdrop-filter:blur(10px);box-sizing:border-box;max-width:1800px;margin:0 auto">
+    <div style="display:flex;align-items:center;gap:clamp(28px,4vw,64px);min-width:0">
+      <a href="desktop.html" style="display:block;flex:none"><img src="assets/logo-white-coral.svg" alt="Printfee" style="height:clamp(20px,2.4vw,32px);display:block"></a>
+      <div class="pf-nav-links" style="display:flex;align-items:center;gap:clamp(14px,2vw,44px);font-size:clamp(13.5px,1.15vw,19px);font-weight:700;color:#EDEDEE;white-space:nowrap;min-width:0">
+        <a href="constructor.html" style="color:#FF5C38;text-decoration:none">Конструктор</a>
+        <a href="catalog.html" style="color:inherit;text-decoration:none" style-hover="color:#FF8259">Макет за вас</a>
+        <a href="desktop.html#news" style="color:inherit;text-decoration:none" style-hover="color:#FF8259">Новости</a>
+        <a href="desktop.html#footer" style="color:inherit;text-decoration:none" style-hover="color:#FF8259">Контакты</a>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:0;flex:none">
+      <a href="favorites.html" aria-label="Избранное" style="width:clamp(38px,4.6vw,52px);height:clamp(38px,4.6vw,52px);border-radius:50%;display:grid;place-items:center;color:#EDEDEE;text-decoration:none" style-hover="background:rgba(255,255,255,.08)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EDEDEE" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.5l2.47 5.18 5.53.62-4.1 3.9 1.08 5.6L12 15.9l-4.98 2.9 1.08-5.6-4.1-3.9 5.53-.62L12 3.5z"></path></svg>
+      </a>
+      <a ref="{{ setCartIconRef }}" href="cart.html" aria-label="Корзина" style="position:relative;width:clamp(38px,4.6vw,52px);height:clamp(38px,4.6vw,52px);border-radius:50%;display:grid;place-items:center;color:#EDEDEE;text-decoration:none" style-hover="background:rgba(255,255,255,.08)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EDEDEE" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h12l-1 12.5a1 1 0 0 1-1 .9H8a1 1 0 0 1-1-.9L6 8z"></path><path d="M9 8V6.5a3 3 0 0 1 6 0V8"></path></svg>
+        <sc-if value="{{ cartCount }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:2px;right:2px;min-width:16px;height:16px;padding:0 3px;border-radius:99px;background:#FF5C38;color:#0B0B0C;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1">{{ cartCount }}</div>
+        </sc-if>
+      </a>
+      <a href="account.html" aria-label="Личный кабинет: Алина" style="display:flex;align-items:center;gap:8px;height:clamp(38px,4.6vw,52px);padding:0 16px 0 clamp(7px,1vw,12px);border-radius:99px;color:#EDEDEE;text-decoration:none" style-hover="background:rgba(255,255,255,.08)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EDEDEE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"></circle><path d="M4.5 20c0-4.1 3.5-6.3 7.5-6.3s7.5 2.2 7.5 6.3"></path></svg>
+        <span class="pf-nav-name" style="font-weight:600;font-size:14px;white-space:nowrap">Алина</span>
+      </a>
+      <label for="pfNavCb" class="pf-burger" aria-label="Меню" style="width:38px;height:38px;border-radius:50%;place-items:center;color:#EDEDEE;cursor:pointer;flex:none" style-hover="background:rgba(255,255,255,.08)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EDEDEE" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </label>
+    </div>
+    <input type="checkbox" id="pfNavCb" class="pf-nav-cb" style="display:none">
+    <div class="pf-nav-drawer" style="position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#0B0B0C;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:8px clamp(20px,3vw,48px) 16px;font-weight:700;font-size:16px">
+      <a href="constructor.html" style="display:block;padding:14px 0;color:#FF5C38;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.06)">Конструктор</a>
+      <a href="catalog.html" style="display:block;padding:14px 0;color:#EDEDEE;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.06)">Макет за вас</a>
+      <a href="desktop.html#news" style="display:block;padding:14px 0;color:#EDEDEE;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.06)">Новости</a>
+      <a href="desktop.html#footer" style="display:block;padding:14px 0;color:#EDEDEE;text-decoration:none">Контакты</a>
+    </div>
+  </div>
+
+  <!-- HEADLINE -->
+  <div style="max-width:1800px;margin:0 auto;padding:clamp(76px,9vw,96px) clamp(20px,3vw,48px) 40px;box-sizing:border-box;min-height:calc(100vh - clamp(60px,6vw,80px));display:flex;align-items:center">
+    <div style="width:100%">
+
+    <!-- BREADCRUMB -->
+    <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(237,237,238,.65);margin-bottom:18px">
+      <a href="desktop.html" style="color:inherit;text-decoration:none" style-hover="color:#EDEDEE">Главная</a>
+      <span>/</span>
+      <span style="color:rgba(237,237,238,.75)">Конструктор</span>
+    </div>
+
+    <!-- TITLE ROW -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:28px">
+      <h1 class="pf-builder-title" style="margin:0;font-weight:700;font-size:clamp(28px,3vw,42px);line-height:1.05;letter-spacing:-.02em;white-space:nowrap">Собери принт за пару кликов</h1>
+      <p style="margin:0 0 4px;font-size:14px;line-height:1.55;font-weight:300;color:rgba(237,237,238,.55);max-width:36ch">Загрузи фото или текст, выбери цвет и футболку — увидишь готовый принт на 3D-модели за пару секунд.</p>
+    </div>
+
+    <!-- BUILDER -->
+    <div class="pf-builder-grid" style="width:100%;display:grid;grid-template-columns:1.3fr .9fr;gap:32px;align-items:start">
+
+    <!-- STAGE -->
+    <div style="position:relative">
+
+      <div ref="{{ setStageRef }}" onTouchStart="{{ handleTouchStart }}" onTouchMove="{{ handleTouchMove }}" onTouchEnd="{{ handleTouchEnd }}" style="position:relative;height:clamp(340px,38vw,480px);border-radius:28px;background:radial-gradient(circle at 50% 20%,#1c1c20,#0f0f11 70%);border:1px solid rgba(255,255,255,.08);overflow:hidden;touch-action:none">
+
+        <!-- 3D / 2D VIEW TOGGLE -->
+        <div style="position:absolute;top:14px;left:14px;z-index:6;display:flex;align-items:center;gap:2px;background:rgba(11,11,12,.75);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:3px">
+          <button type="button" onClick="{{ pick3D }}" style="height:27px;padding:0 14px;border-radius:99px;border:none;background:{{ mode3DBg }};color:{{ mode3DFg }};font-weight:700;font-size:11.5px;letter-spacing:.02em;cursor:pointer">3D</button>
+          <button type="button" onClick="{{ pick2D }}" style="height:27px;padding:0 14px;border-radius:99px;border:none;background:{{ mode2DBg }};color:{{ mode2DFg }};font-weight:700;font-size:11.5px;letter-spacing:.02em;cursor:pointer">2D</button>
+        </div>
+
+        <!-- COLOR PICKER -->
+        <div style="position:absolute;top:14px;right:14px;z-index:6;display:flex;align-items:center;gap:7px;background:rgba(11,11,12,.75);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:6px 12px 6px 13px">
+          <div style="font-size:11px;font-weight:600;color:rgba(237,237,238,.6);white-space:nowrap">Цвет</div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <sc-for list="{{ colorPresets }}" as="c" hint-placeholder-count="6">
+              <button type="button" onClick="{{ c.onPick }}" aria-label="{{ c.hex }}" style="width:19px;height:19px;border-radius:50%;background:{{ c.hex }};border:2px solid {{ c.border }};box-shadow:{{ c.shadow }};cursor:pointer;padding:0;flex:none"></button>
+            </sc-for>
+          </div>
+          <div style="width:1px;height:18px;background:rgba(255,255,255,.14);flex:none"></div>
+          <input type="color" value="{{ garmentColor }}" onChange="{{ onGarmentColorPick }}" title="Свой цвет" style="width:19px;height:19px;border-radius:50%;border:2px solid rgba(255,255,255,.3);background:none;padding:0;cursor:pointer;flex:none">
+        </div>
+
+        <!-- ZOOM CONTROLS — shared between 3D and 2D, wheel/pinch bound on the whole stage box -->
+        <div style="position:absolute;bottom:14px;right:14px;z-index:6;display:flex;flex-direction:column;gap:6px">
+          <button type="button" onClick="{{ zoomIn }}" aria-label="Приблизить" style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(11,11,12,.65);backdrop-filter:blur(6px);color:#EDEDEE;font-size:16px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0">+</button>
+          <button type="button" onClick="{{ zoomOut }}" aria-label="Отдалить" style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(11,11,12,.65);backdrop-filter:blur(6px);color:#EDEDEE;font-size:18px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0">−</button>
+        </div>
+
+        <div style="position:absolute;inset:0;display:{{ mode3DDisplay }}">
+
+        <canvas ref="{{ setCanvasRef }}" onPointerDown="{{ startYawDrag }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;cursor:{{ yawCursor }};touch-action:none"></canvas>
+
+        <sc-if value="{{ modelHint }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:24px;pointer-events:none">
+            <div style="position:relative;width:52px;height:52px;display:flex;align-items:center;justify-content:center">
+              <div style="position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,rgba(255,92,56,.35),transparent 70%);animation:pf-pulse 2s ease-in-out infinite"></div>
+              <img src="assets/icon-coral.svg" alt="" style="position:relative;width:34px;height:auto;animation:{{ modelIconAnim }};transform-origin:50% 50%">
+            </div>
+            <div style="font-family:'Onest',sans-serif;font-weight:600;font-size:14.5px;color:#EDEDEE;max-width:300px;line-height:1.55">{{ modelHint }}</div>
+          </div>
+        </sc-if>
+
+        <!-- FRONT FACE layer edit overlay — visible only when facing front -->
+        <sc-if value="{{ showFrontLayers }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;pointer-events:none">
+            <sc-for list="{{ frontLayers }}" as="l" hint-placeholder-count="0">
+              <div onPointerDown="{{ l.onDown }}" style="position:absolute;left:{{ l.x }};top:{{ l.y }};transform:{{ l.transform }};touch-action:none;cursor:grab;user-select:none;outline:{{ l.outline }};outline-offset:6px;pointer-events:auto">
+                <sc-if value="{{ l.isImage }}" hint-placeholder-val="{{ false }}">
+                  <div style="width:200px;height:200px;background-image:{{ l.bgImage }};background-size:contain;background-position:center;background-repeat:no-repeat;pointer-events:none"></div>
+                </sc-if>
+                <sc-if value="{{ l.isText }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-family:'Onest',sans-serif;font-weight:700;font-size:{{ l.fontSize }};color:{{ l.color }};white-space:nowrap;pointer-events:none">{{ l.text }}</div>
+                </sc-if>
+                <sc-if value="{{ l.selected }}" hint-placeholder-val="{{ false }}">
+                  <div onPointerDown="{{ l.onRotate }}" style="position:absolute;left:50%;top:-30px;width:14px;height:14px;border-radius:50%;background:#FF5C38;transform:translateX(-50%);cursor:grab;touch-action:none"></div>
+                  <div onPointerDown="{{ l.onResize }}" style="position:absolute;right:-8px;bottom:-8px;width:16px;height:16px;border-radius:4px;background:#FF5C38;cursor:nwse-resize;touch-action:none"></div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- BACK FACE layer edit overlay — visible only when facing back -->
+        <sc-if value="{{ showBackLayers }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;pointer-events:none">
+            <sc-for list="{{ backLayers }}" as="l" hint-placeholder-count="0">
+              <div onPointerDown="{{ l.onDown }}" style="position:absolute;left:{{ l.x }};top:{{ l.y }};transform:{{ l.transform }};touch-action:none;cursor:grab;user-select:none;outline:{{ l.outline }};outline-offset:6px;pointer-events:auto">
+                <sc-if value="{{ l.isImage }}" hint-placeholder-val="{{ false }}">
+                  <div style="width:200px;height:200px;background-image:{{ l.bgImage }};background-size:contain;background-position:center;background-repeat:no-repeat;pointer-events:none"></div>
+                </sc-if>
+                <sc-if value="{{ l.isText }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-family:'Onest',sans-serif;font-weight:700;font-size:{{ l.fontSize }};color:{{ l.color }};white-space:nowrap;pointer-events:none">{{ l.text }}</div>
+                </sc-if>
+                <sc-if value="{{ l.selected }}" hint-placeholder-val="{{ false }}">
+                  <div onPointerDown="{{ l.onRotate }}" style="position:absolute;left:50%;top:-30px;width:14px;height:14px;border-radius:50%;background:#FF5C38;transform:translateX(-50%);cursor:grab;touch-action:none"></div>
+                  <div onPointerDown="{{ l.onResize }}" style="position:absolute;right:-8px;bottom:-8px;width:16px;height:16px;border-radius:4px;background:#FF5C38;cursor:nwse-resize;touch-action:none"></div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        </div>
+
+        <!-- 2D MODE: static finished-result gallery, captured from the 3D scene -->
+        <sc-if value="{{ is2D }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px 56px">
+            <sc-if value="{{ galleryReady }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ galleryImg }}" alt="Футболка" style="max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 26px 40px rgba(0,0,0,.45));transform:scale({{ zoom }});transition:transform .15s ease">
+            </sc-if>
+            <sc-if value="{{ galleryLoading }}" hint-placeholder-val="{{ true }}">
+              <div style="font-family:'Onest',sans-serif;font-size:13px;color:rgba(237,237,238,.6)">Готовим фото модели…</div>
+            </sc-if>
+          </div>
+
+          <button type="button" onClick="{{ galleryPrev }}" aria-label="Предыдущий ракурс" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(11,11,12,.6);backdrop-filter:blur(6px);color:#EDEDEE;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0">‹</button>
+          <button type="button" onClick="{{ galleryNext }}" aria-label="Следующий ракурс" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(11,11,12,.6);backdrop-filter:blur(6px);color:#EDEDEE;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0">›</button>
+
+          <div style="position:absolute;bottom:14px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:6px">
+            <sc-for list="{{ galleryDots }}" as="d" hint-placeholder-count="6">
+              <button type="button" onClick="{{ d.onPick }}" style="width:{{ d.size }};height:{{ d.size }};border-radius:50%;border:none;background:{{ d.bg }};cursor:pointer;padding:0"></button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+
+    <!-- PANEL -->
+    <div class="pf-builder-panel" style="display:flex;flex-direction:column;gap:14px;position:sticky;top:88px">
+
+      <div style="background:linear-gradient(180deg,#17171A,#121214);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:8px;box-shadow:0 30px 70px -36px rgba(0,0,0,.65)">
+
+        <!-- SECTION: DESIGN -->
+        <div style="padding:16px 20px 16px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:22px;height:22px;border-radius:7px;background:rgba(255,92,56,.13);color:#FF5C38;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">1</div>
+            <div style="font-weight:600;font-size:15px;letter-spacing:-.01em">Изображение</div>
+          </div>
+          <label style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:10px;height:52px;border-radius:14px;border:1.5px dashed rgba(255,255,255,.16);background:rgba(255,255,255,.025);cursor:pointer" style-hover="border-color:rgba(255,92,56,.55);background:rgba(255,92,56,.04)">
+            <div style="width:26px;height:26px;border-radius:50%;background:rgba(255,92,56,.13);display:flex;align-items:center;justify-content:center;color:#FF5C38;font-size:15px;font-weight:600;line-height:1;flex:none">+</div>
+            <div style="font-size:13px;font-weight:600;color:#EDEDEE">Загрузить фото или рисунок</div>
+            <input type="file" accept="image/*" onChange="{{ onUpload }}" style="display:none">
+          </label>
+          <sc-if value="{{ hasAnyLayers }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ currentLayers }}" as="row" hint-placeholder-count="0">
+                <div onClick="{{ row.onSelect }}" style="display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:13px;background:{{ row.rowBg }};border:1px solid {{ row.rowBorder }};cursor:pointer">
+                  <div style="width:30px;height:30px;border-radius:8px;background-image:{{ row.thumb }};background-size:cover;background-position:center;background-color:{{ row.swatchColor }};flex:none;border:1px solid rgba(255,255,255,.12)"></div>
+                  <div style="flex:1;min-width:0;font-size:13px;font-weight:500;color:#EDEDEE;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ row.label }}</div>
+                  <button type="button" onClick="{{ row.onDelete }}" style="width:24px;height:24px;border-radius:50%;border:none;background:rgba(255,255,255,.07);color:rgba(237,237,238,.75);font-size:11.5px;cursor:pointer;flex:none">✕</button>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="height:1px;background:rgba(255,255,255,.07);margin:0 20px"></div>
+
+        <!-- SECTION: TEXT -->
+        <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:22px;height:22px;border-radius:7px;background:rgba(255,92,56,.13);color:#FF5C38;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">2</div>
+              <div style="font-weight:600;font-size:15px;letter-spacing:-.01em">Текст</div>
+            </div>
+            <button type="button" onClick="{{ addText }}" style="height:34px;padding:0 16px;border-radius:10px;border:none;background:linear-gradient(135deg,#FF7A54,#FF5C38);color:#0B0B0C;font-weight:600;font-size:12.5px;cursor:pointer;box-shadow:0 10px 22px -10px rgba(255,92,56,.55);white-space:nowrap">+ Добавить</button>
+          </div>
+          <sc-if value="{{ hasActiveText }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:14px">
+              <div>
+                <div style="font-size:12px;font-weight:600;color:rgba(237,237,238,.65);margin-bottom:8px">Текст</div>
+                <input type="text" value="{{ activeText }}" onChange="{{ onActiveTextChange }}" placeholder="Твой текст" style="width:100%;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:#0B0B0C;color:#EDEDEE;font-size:14.5px;padding:0 16px;font-family:'Onest',sans-serif;box-sizing:border-box">
+              </div>
+              <div>
+                <div style="font-size:12px;font-weight:600;color:rgba(237,237,238,.65);margin-bottom:8px">Размер текста</div>
+                <input type="range" min="16" max="80" value="{{ activeFontSize }}" onChange="{{ onFontSizeChange }}" style="width:100%">
+              </div>
+              <div>
+                <div style="font-size:12px;font-weight:600;color:rgba(237,237,238,.65);margin-bottom:8px">Цвет текста</div>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <input type="color" value="{{ activeColor }}" onChange="{{ onActiveColorPick }}" style="width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:none;padding:2px;cursor:pointer">
+                  <input type="text" key="{{ activeId }}" defaultValue="{{ activeColor }}" onChange="{{ onActiveHexInput }}" style="flex:1;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0B0B0C;color:#EDEDEE;font-size:13.5px;padding:0 12px;font-family:ui-monospace,Menlo,monospace;box-sizing:border-box">
+                </div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ noActiveText }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:13px;color:rgba(237,237,238,.6)">Не обязательно — добавь, если нужна надпись</div>
+          </sc-if>
+        </div>
+
+        <div style="height:1px;background:rgba(255,255,255,.07);margin:0 20px"></div>
+
+        <!-- SECTION: PRODUCT -->
+        <div style="padding:16px 20px 18px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:22px;height:22px;border-radius:7px;background:rgba(255,92,56,.13);color:#FF5C38;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none">3</div>
+            <div style="font-weight:600;font-size:15px;letter-spacing:-.01em">Товар</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <sc-for list="{{ garmentTypes }}" as="g" hint-placeholder-count="3">
+              <button type="button" onClick="{{ g.onPick }}" style="display:flex;align-items:center;gap:10px;height:44px;padding:0 16px;border-radius:12px;border:1px solid {{ g.border }};background:{{ g.bg }};color:{{ g.fg }};cursor:pointer;text-align:left;flex:1;min-width:158px">
+                <div style="width:16px;height:16px;border-radius:50%;border:1.5px solid {{ g.dotBorder }};display:flex;align-items:center;justify-content:center;flex:none">
+                  <sc-if value="{{ g.selected }}" hint-placeholder-val="{{ false }}">
+                    <div style="width:8px;height:8px;border-radius:50%;background:#FF5C38"></div>
+                  </sc-if>
+                </div>
+                <span style="flex:1;font-weight:600;font-size:13px;white-space:nowrap">{{ g.label }}</span>
+                <span style="font-weight:400;font-size:12px;opacity:.7;white-space:nowrap">{{ g.price }}</span>
+              </button>
+            </sc-for>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+              <div style="font-size:12px;font-weight:600;color:rgba(237,237,238,.65)">Размер</div>
+              <button type="button" onClick="{{ openSizeChart }}" style="border:none;background:none;padding:0;font-size:12px;font-weight:600;color:#FF8B6E;cursor:pointer;text-decoration:underline;text-underline-offset:2px">Таблица размеров</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
+              <sc-for list="{{ sizes }}" as="sz" hint-placeholder-count="7">
+                <button type="button" onClick="{{ sz.onPick }}" style="height:30px;border-radius:8px;border:1px solid {{ sz.border }};background:{{ sz.bg }};color:{{ sz.fg }};font-weight:600;font-size:11px;cursor:pointer;padding:0">{{ sz.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="background:linear-gradient(135deg,#FF7A54,#FF5C38);border-radius:18px;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 20px 46px -22px rgba(255,92,56,.55)">
+        <div>
+          <div style="font-size:12px;color:rgba(11,11,12,.6);font-weight:600;text-transform:uppercase;letter-spacing:.08em">Итого</div>
+          <div style="font-weight:700;font-size:30px;color:#0B0B0C;letter-spacing:-.02em">{{ priceLabel }}</div>
+        </div>
+        <button ref="{{ setAddToCartBtnRef }}" type="button" onClick="{{ addToCart }}" style="height:54px;padding:0 30px;border-radius:99px;background:#0B0B0C;color:#EDEDEE;font-weight:600;font-size:15px;border:none;cursor:pointer;white-space:nowrap">В корзину</button>
+      </div>
+      <sc-if value="{{ cartMsg }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size:13.5px;color:rgba(237,237,238,.6);text-align:center">{{ cartMsg }}</div>
+      </sc-if>
+
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- SIZE CHART MODAL (kept outside the sticky panel, which forms its own
+       stacking context and would otherwise trap this below the fixed nav) -->
+  <sc-if value="{{ sizeChartOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeSizeChart }}" style="position:fixed;inset:0;z-index:50;background:rgba(11,11,12,.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px">
+      <div onClick="{{ stopPropagation }}" style="width:100%;max-width:460px;background:linear-gradient(180deg,#17171A,#121214);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:24px 24px 20px;box-shadow:0 40px 90px -30px rgba(0,0,0,.7)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+          <div style="font-weight:700;font-size:17px;letter-spacing:-.01em">Таблица размеров</div>
+          <button type="button" onClick="{{ closeSizeChart }}" aria-label="Закрыть" style="width:28px;height:28px;border-radius:50%;border:none;background:rgba(255,255,255,.07);color:rgba(237,237,238,.75);font-size:13px;cursor:pointer">✕</button>
+        </div>
+        <div style="font-size:12.5px;color:rgba(237,237,238,.65);margin-bottom:18px">Замеры в см. Табличные значения для унисекс-кроя, ±1–2 см в зависимости от партии ткани.</div>
+        <div style="display:grid;grid-template-columns:.7fr 1fr 1fr 1fr;gap:0;font-size:13px">
+          <div style="padding:8px 6px;font-weight:600;color:rgba(237,237,238,.65);border-bottom:1px solid rgba(255,255,255,.08)">Размер</div>
+          <div style="padding:8px 6px;font-weight:600;color:rgba(237,237,238,.65);border-bottom:1px solid rgba(255,255,255,.08);text-align:center">Грудь</div>
+          <div style="padding:8px 6px;font-weight:600;color:rgba(237,237,238,.65);border-bottom:1px solid rgba(255,255,255,.08);text-align:center">Длина</div>
+          <div style="padding:8px 6px;font-weight:600;color:rgba(237,237,238,.65);border-bottom:1px solid rgba(255,255,255,.08);text-align:center">Рукав</div>
+          <sc-for list="{{ sizeChartRows }}" as="row" hint-placeholder-count="7">
+            <div style="padding:10px 6px;font-weight:700;color:{{ row.fg }};background:{{ row.bg }};border-radius:8px 0 0 8px">{{ row.label }}</div>
+            <div style="padding:10px 6px;text-align:center;color:#EDEDEE;background:{{ row.bg }}">{{ row.chest }}</div>
+            <div style="padding:10px 6px;text-align:center;color:#EDEDEE;background:{{ row.bg }}">{{ row.length }}</div>
+            <div style="padding:10px 6px;text-align:center;color:#EDEDEE;background:{{ row.bg }};border-radius:0 8px 8px 0">{{ row.sleeve }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- FOOTER -->
+  <div id="footer" style="border-top:1px solid rgba(255,255,255,.1);padding:80px clamp(20px,3vw,48px) 40px">
+    <div style="max-width:1800px;margin:0 auto">
+      <div class="pf-footer-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:90px">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <img src="assets/logo-white-coral.svg" alt="Printfee" style="height:20px;display:block;align-self:flex-start">
+          <div style="font-size:14.5px;font-weight:300;line-height:1.6;color:rgba(237,237,238,.55);max-width:28ch">Печать футболок с твоим дизайном. Казань, доставка по всей России.</div>
+          <div style="display:flex;gap:12px">
+            <a href="#footer" style="width:38px;height:38px;border-radius:50%;border:1px solid #FF5C38;display:grid;place-items:center;color:#FF5C38;text-decoration:none;font-size:12px;font-weight:600" style-hover="background:#FF5C38;color:#0B0B0C">TG</a>
+            <a href="#footer" style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;color:rgba(237,237,238,.7);text-decoration:none;font-size:12px;font-weight:500" style-hover="border-color:rgba(255,255,255,.5)">VK</a>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;font-size:14.5px">
+          <div style="color:rgba(237,237,238,.6);margin-bottom:4px">Сервис</div>
+          <a href="constructor.html" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">Конструктор</a>
+          <a href="catalog.html" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">Макет за вас</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;font-size:14.5px">
+          <div style="color:rgba(237,237,238,.6);margin-bottom:4px">Компания</div>
+          <a href="desktop.html#footer" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">О нас</a>
+          <a href="desktop.html#footer" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">Отзывы</a>
+          <a href="desktop.html#news" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">Блог</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;font-size:14.5px">
+          <div style="color:rgba(237,237,238,.6);margin-bottom:4px">Помощь</div>
+          <a href="#footer" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">FAQ</a>
+          <a href="#footer" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">Доставка и оплата</a>
+          <a href="#footer" style="color:rgba(237,237,238,.75);text-decoration:none" style-hover="color:#fff">hello@printfee.ru</a>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);padding-top:28px;font-size:13px;font-weight:300;color:rgba(237,237,238,.6)">
+        <div>© Printfee 2026. Все права защищены</div>
+        <div style="display:flex;gap:24px">
+          <a href="#footer" style="color:inherit;text-decoration:none">Политика конфиденциальности</a>
+          <a href="#footer" style="color:inherit;text-decoration:none">Оферта</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    yaw: 0,
+    pitch: 0,
+    garmentType: 'tshirt',
+    garmentColor: '#C2410C',
+    sceneMode: '3d', // '3d' | '2d'
+    size: 'M',
+    layers: { front: [], back: [] },
+    activeId: null,
+    cartMsg: '',
+    cartCount: 0,
+    modelStatus: 'loading', // 'loading' | 'ready' | 'missing' | 'error'
+    gallery: [],
+    galleryIndex: 0,
+    sizeChartOpen: false,
+    zoom: 1
+  };
+
+  nextId = 1;
+
+  // Flip to -1 if the supplied .glb turns out to face the other way
+  // (i.e. front print ends up on the back of the model).
+  FRONT_FACING_Z = 1;
+
+  getActiveSide() {
+    const n = ((this.state.yaw % 360) + 360) % 360;
+    return (n < 90 || n > 270) ? 'front' : 'back';
+  }
+
+  startYawDrag = (e) => {
+    e.preventDefault();
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startYaw = this.state.yaw;
+    const startPitch = this.state.pitch || 0;
+    this.setState({ dragging: true });
+    const move = (ev) => {
+      const nextPitch = Math.max(-20, Math.min(25, startPitch - (ev.clientY - startY) * 0.35));
+      this.setState({ yaw: startYaw + (ev.clientX - startX) * 0.6, pitch: nextPitch });
+    };
+    const up = () => {
+      this.setState({ dragging: false });
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  ZOOM_MIN = 0.6;
+  ZOOM_MAX = 3;
+
+  clampZoom = (z) => Math.max(this.ZOOM_MIN, Math.min(this.ZOOM_MAX, z));
+
+  handleWheel = (e) => {
+    e.preventDefault();
+    const factor = Math.exp(-e.deltaY * 0.001);
+    this.setState(s => ({ zoom: this.clampZoom((s.zoom || 1) * factor) }));
+  };
+
+  // two-finger pinch-to-zoom for touch
+  handleTouchStart = (e) => {
+    if (e.touches.length !== 2) return;
+    e.preventDefault();
+    const [a, b] = e.touches;
+    this._pinchStartDist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+    this._pinchStartZoom = this.state.zoom || 1;
+  };
+
+  handleTouchMove = (e) => {
+    if (e.touches.length !== 2 || !this._pinchStartDist) return;
+    e.preventDefault();
+    const [a, b] = e.touches;
+    const dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+    const nextZoom = this.clampZoom(this._pinchStartZoom * (dist / this._pinchStartDist));
+    this.setState({ zoom: nextZoom });
+  };
+
+  handleTouchEnd = (e) => {
+    if (e.touches.length < 2) this._pinchStartDist = null;
+  };
+
+  zoomIn = () => this.setState(s => ({ zoom: this.clampZoom((s.zoom || 1) * 1.25) }));
+  zoomOut = () => this.setState(s => ({ zoom: this.clampZoom((s.zoom || 1) / 1.25) }));
+
+  // --- Three.js scene ---
+
+  setStageRef = (el) => {
+    if (el && el !== this._stage) {
+      this._stage = el;
+      // bound here (not on the canvas) so wheel-zoom works in both 3D and
+      // 2D mode, and as a real listener since templated onWheel props in
+      // this runtime end up passive (preventDefault is ignored there)
+      this._onWheelNative = (e) => { e.preventDefault(); this.handleWheel(e); };
+      el.addEventListener('wheel', this._onWheelNative, { passive: false });
+    } else if (!el) {
+      this._stage = null;
+    }
+  };
+
+  setCanvasRef = (el) => {
+    if (el && el !== this._canvas) { this._canvas = el; this.initThree(); }
+    else if (!el) { this._canvas = null; }
+  };
+
+  componentDidMount() {
+    // fallback in case the ref hole never fires
+    this._pollTimer = setInterval(() => {
+      if (this._canvas) { clearInterval(this._pollTimer); return; }
+      const el = this._stage && this._stage.querySelector('canvas');
+      if (el) { clearInterval(this._pollTimer); this.setCanvasRef(el); }
+    }, 300);
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    clearInterval(this._pollTimer);
+    if (this._resizeObserver) this._resizeObserver.disconnect();
+    if (this._renderer) this._renderer.dispose();
+    if (this._stage && this._onWheelNative) this._stage.removeEventListener('wheel', this._onWheelNative);
+  }
+
+  initThree() {
+    const canvas = this._canvas;
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, failIfMajorPerformanceCaveat: false, preserveDrawingBuffer: true });
+    } catch (err) {
+      console.error('[constructor] WebGL unavailable', err);
+      this.setState({ modelStatus: 'webgl_unavailable' });
+      return;
+    }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this._renderer = renderer;
+
+    const scene = new THREE.Scene();
+    this._scene = scene;
+
+    const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+    this._baseCamY = 0.05;
+    this._baseCamZ = 6;
+    camera.position.set(0, this._baseCamY, this._baseCamZ);
+    this._camera = camera;
+
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x1a1a1d, 0.9));
+    const key = new THREE.DirectionalLight(0xffffff, 1.05);
+    key.position.set(2.5, 3, 3.5);
+    scene.add(key);
+    const fill = new THREE.DirectionalLight(0xffffff, 0.35);
+    fill.position.set(-3, 1, -2);
+    scene.add(fill);
+
+    const shirtGroup = new THREE.Group();
+    scene.add(shirtGroup);
+    this._shirtGroup = shirtGroup;
+    this._decalMeshes = [];
+    this._garmentMeshes = [];
+    this._garmentMaterials = [];
+
+    // CALIBRATION: placeholder until a real model is loaded and its actual
+    // bounding box is known — onModelLoaded() recomputes this properly.
+    this._modelRadius = 2.2;
+    this._decalBaseSize = 0.5;
+
+    const loader = new THREE.GLTFLoader();
+    loader.load(
+      'assets/tshirt.glb',
+      (gltf) => this.onModelLoaded(gltf),
+      undefined,
+      (err) => {
+        console.error('[constructor] assets/tshirt.glb failed to load', err);
+        this.setState({ modelStatus: 'missing' });
+      }
+    );
+
+    const resize = () => {
+      if (!this._stage) return;
+      const w = this._stage.clientWidth, h = this._stage.clientHeight;
+      if (!w || !h) return;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h, false);
+    };
+    // the canvas ref can fire before its parent stage-div ref does, so wait
+    // a frame for `_stage` to exist rather than observing a null element
+    const setupResize = () => {
+      if (!this._stage) { requestAnimationFrame(setupResize); return; }
+      this._resizeObserver = new ResizeObserver(resize);
+      this._resizeObserver.observe(this._stage);
+      resize();
+    };
+    setupResize();
+
+    const draw = () => {
+      if (!this._renderer) return;
+      if (this.state.sceneMode === '3d') {
+        shirtGroup.rotation.y = THREE.MathUtils.degToRad(this.state.yaw || 0);
+        shirtGroup.rotation.x = THREE.MathUtils.degToRad(this.state.pitch || 0);
+        camera.position.z = this._baseCamZ / (this.state.zoom || 1);
+        if (this._decalsDirty) {
+          // Rebuilding a decal means raycasting + DecalGeometry against a
+          // ~577k-vertex mesh — doing that on every single animation frame
+          // while a print is being dragged/resized is what makes the editor
+          // feel laggy. Throttle it during continuous edits; the dirty flag
+          // stays set so the last, accurate position still lands within
+          // ~70ms of the user stopping.
+          const now = performance.now();
+          if (now - (this._lastDecalRebuildAt || 0) > 70) {
+            this.rebuildDecals();
+            this._decalsDirty = false;
+            this._galleryDirty = true;
+            this._lastDecalRebuildAt = now;
+          }
+        }
+        renderer.render(scene, camera);
+      } else if (this.state.sceneMode === '2d') {
+        // make sure any pending print edits are baked onto the model before
+        // we snapshot it for the static gallery
+        if (this._decalsDirty) { this.rebuildDecals(); this._decalsDirty = false; this._galleryDirty = true; }
+        if (this._galleryDirty) { this.captureGallery(); this._galleryDirty = false; }
+      }
+      this._raf = requestAnimationFrame(draw);
+    };
+    this._raf = requestAnimationFrame(draw);
+  }
+
+  onModelLoaded(gltf) {
+    const root = gltf.scene;
+
+    // Scale first, using the *unscaled* bounding box just to derive the
+    // scale factor — do NOT reposition yet, since translation is applied
+    // unscaled and would otherwise place the recentered object thousands of
+    // units off if computed before scaling down.
+    const rawBox = new THREE.Box3().setFromObject(root);
+    const rawSize = new THREE.Vector3();
+    rawBox.getSize(rawSize);
+    const targetHeight = 2.6;
+    const scale = targetHeight / (rawSize.y || 1);
+    root.scale.setScalar(scale);
+
+    // Now that geometry is already at final scale, centering via position
+    // is a small, correctly-scaled offset.
+    const box = new THREE.Box3().setFromObject(root);
+    const center = new THREE.Vector3();
+    box.getCenter(center);
+    root.position.sub(center);
+
+    const box2 = new THREE.Box3().setFromObject(root);
+    const size2 = new THREE.Vector3();
+    box2.getSize(size2);
+
+    this._modelRadius = size2.length() / 2;
+    // decal depth only — width/height are now derived per-layer from real
+    // camera/stage geometry in buildDecalMesh(), so they always agree with
+    // the flat 2D edit overlay instead of needing manual tuning here.
+    this._decalBaseSize = Math.min(size2.x, size2.y) * 0.45;
+
+    this._baseCamY = size2.y * 0.05;
+    this._baseCamZ = this._modelRadius * 3.2;
+    this._camera.position.set(0, this._baseCamY, this._baseCamZ / (this.state.zoom || 1));
+    this._camera.updateProjectionMatrix();
+
+    this._garmentMeshes = [];
+    this._garmentMaterials = [];
+    root.traverse((obj) => {
+      if (obj.isMesh) {
+        this._garmentMeshes.push(obj);
+        const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+        mats.forEach((m) => {
+          if (!m || !m.color) return;
+          // The source diffuse texture is a flat pattern-piece/UV layout
+          // (grey cut panels on white), not real fabric color — using it as
+          // `map` makes the garment look like a patchwork instead of a
+          // plain shirt. Drop it and let garmentColor tint a plain base;
+          // keep normalMap for subtle fabric surface detail.
+          m.map = null;
+          m.roughness = 0.82;
+          m.metalness = 0;
+          m.needsUpdate = true;
+          this._garmentMaterials.push(m);
+        });
+      }
+    });
+
+    this._shirtGroup.add(root);
+    this.applyGarmentColor(this.state.garmentColor);
+    this._decalsDirty = true;
+    this._galleryDirty = true;
+    this.setState({ modelStatus: 'ready' });
+  }
+
+  applyGarmentColor(hex) {
+    this._garmentMaterials.forEach((m) => { m.color.set(hex); m.needsUpdate = true; });
+  }
+
+  getLayerTexture(layer) {
+    const maxAniso = this._renderer ? this._renderer.capabilities.getMaxAnisotropy() : 1;
+    if (layer.kind === 'image') {
+      if (!this._imgTextureCache) this._imgTextureCache = new Map();
+      let tex = this._imgTextureCache.get(layer.src);
+      if (!tex) {
+        tex = new THREE.TextureLoader().load(layer.src, () => { this._decalsDirty = true; this._galleryDirty = true; });
+        tex.anisotropy = maxAniso;
+        this._imgTextureCache.set(layer.src, tex);
+      }
+      return tex;
+    }
+    // Text canvases are the expensive part to regenerate (2048² upload to
+    // the GPU) — cache per layer and only redraw when its actual content
+    // changed, so dragging/resizing/rotating (which only touch x/y/rot/
+    // scale, not text/fontSize/color) reuses the existing texture instead
+    // of rebuilding it every frame.
+    if (!this._textTextureCache) this._textTextureCache = new Map();
+    const key = `${layer.text}|${layer.fontSize}|${layer.color}`;
+    const cached = this._textTextureCache.get(layer.id);
+    if (cached && cached.key === key) return cached.tex;
+    if (cached) cached.tex.dispose();
+
+    // High-res canvas so text stays crisp even zoomed in close (the decal's
+    // on-screen size can be much bigger than the print itself, unlike a
+    // flat mockup where the texture is only ever seen at ~its own scale).
+    const canvas = document.createElement('canvas');
+    const size = 2048;
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, size, size);
+    ctx.fillStyle = layer.color || '#FF5C38';
+    const fontPx = Math.round((layer.fontSize || 32) * (size / 200));
+    ctx.font = `700 ${fontPx}px Onest, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(layer.text || '', size / 2, size / 2);
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.anisotropy = maxAniso;
+    this._textTextureCache.set(layer.id, { key, tex });
+    return tex;
+  }
+
+  buildDecalMesh(layer, side) {
+    const meshes = this._garmentMeshes;
+    if (!meshes.length || !this._stage) return null;
+    const stageW = this._stage.clientWidth, stageH = this._stage.clientHeight;
+    if (!stageW || !stageH) return null;
+
+    // Derive the decal's position/size from the *actual* camera+stage
+    // geometry (same box the flat 2D edit overlay uses), instead of an
+    // arbitrary fraction of the model's bounding box — this is what makes
+    // a layer you drag/resize in the flat overlay line up with the print
+    // that actually lands on the 3D garment, instead of showing up at a
+    // different spot/scale.
+    const fovRad = THREE.MathUtils.degToRad(this._camera.fov);
+    const camDist = Math.abs(this._camera.position.z);
+    const worldPerPx = (2 * camDist * Math.tan(fovRad / 2)) / stageH;
+
+    const dirZ = (side === 'front' ? 1 : -1) * this.FRONT_FACING_Z;
+    const px = (layer.x / 100 - 0.5) * stageW * worldPerPx;
+    const py = -(layer.y / 100 - 0.5) * stageH * worldPerPx;
+    const origin = new THREE.Vector3(px, py, dirZ * (this._modelRadius + 1));
+    const direction = new THREE.Vector3(0, 0, -dirZ);
+
+    const raycaster = new THREE.Raycaster(origin, direction, 0, this._modelRadius * 3);
+    const hits = raycaster.intersectObjects(meshes, true);
+    if (!hits.length) return null;
+    const hit = hits[0];
+
+    const normal = hit.face.normal.clone().transformDirection(hit.object.matrixWorld).normalize();
+    const dummy = new THREE.Object3D();
+    dummy.position.copy(hit.point);
+    dummy.lookAt(hit.point.clone().add(normal));
+    dummy.rotateZ(THREE.MathUtils.degToRad(layer.rot || 0));
+
+    // 200 here matches the 200px reference box the 2D overlay's image
+    // layers use at scale 1, and the 200-unit reference baked into
+    // getLayerTexture()'s text font sizing — keeping both in the same
+    // units is what makes the sizes agree.
+    const size = 200 * (layer.scale || 1) * worldPerPx;
+    const decalSize = new THREE.Vector3(size, size, this._decalBaseSize * 1.5);
+    const decalGeom = new THREE.DecalGeometry(hit.object, hit.point, dummy.rotation, decalSize);
+
+    return new THREE.Mesh(decalGeom, new THREE.MeshStandardMaterial({
+      map: this.getLayerTexture(layer),
+      transparent: true,
+      depthTest: true,
+      depthWrite: false,
+      polygonOffset: true,
+      polygonOffsetFactor: -4,
+      roughness: 0.85,
+      metalness: 0
+    }));
+  }
+
+  rebuildDecals() {
+    const group = this._shirtGroup;
+    if (!group) return;
+    const prevYaw = group.rotation.y, prevPitch = group.rotation.x;
+    group.rotation.set(0, 0, 0);
+    group.updateMatrixWorld(true);
+
+    this._decalMeshes.forEach((m) => {
+      group.remove(m);
+      m.geometry.dispose();
+      m.material.dispose();
+    });
+    this._decalMeshes = [];
+
+    ['front', 'back'].forEach((side) => {
+      this.state.layers[side].forEach((layer) => {
+        const mesh = this.buildDecalMesh(layer, side);
+        if (mesh) { group.add(mesh); this._decalMeshes.push(mesh); }
+      });
+    });
+
+    group.rotation.y = prevYaw;
+    group.rotation.x = prevPitch;
+    group.updateMatrixWorld(true);
+  }
+
+  // Renders the current model (current color + prints already baked via
+  // decals) at a handful of fixed angles and stores each as a plain PNG data
+  // URL — used by 2D mode as a static "finished result" gallery the shopper
+  // can flip through, instead of an interactive (WebGL-dependent) view.
+  GALLERY_ANGLES = [0, 60, 120, 180, 240, 300];
+
+  captureGallery() {
+    const group = this._shirtGroup;
+    if (!group || !this._renderer || !this._camera || !this._scene) return;
+    const prevYaw = group.rotation.y, prevPitch = group.rotation.x;
+
+    const shots = this.GALLERY_ANGLES.map((angle) => {
+      group.rotation.y = THREE.MathUtils.degToRad(angle);
+      group.rotation.x = 0;
+      group.updateMatrixWorld(true);
+      this._renderer.render(this._scene, this._camera);
+      return { angle, src: this._canvas.toDataURL('image/png') };
+    });
+
+    group.rotation.y = prevYaw;
+    group.rotation.x = prevPitch;
+    group.updateMatrixWorld(true);
+
+    this.setState({ gallery: shots, galleryIndex: 0 });
+  }
+
+  galleryPrev = () => {
+    this.setState(s => {
+      const n = s.gallery.length || 1;
+      return { galleryIndex: (s.galleryIndex - 1 + n) % n };
+    });
+  };
+
+  galleryNext = () => {
+    this.setState(s => {
+      const n = s.gallery.length || 1;
+      return { galleryIndex: (s.galleryIndex + 1) % n };
+    });
+  };
+
+  pickColor = (hex) => {
+    this.setState({ garmentColor: hex });
+    this.applyGarmentColor(hex);
+    this._galleryDirty = true;
+  };
+
+  pickSceneMode = (mode) => this.setState({ sceneMode: mode });
+
+  openSizeChart = () => this.setState({ sizeChartOpen: true });
+  closeSizeChart = () => this.setState({ sizeChartOpen: false });
+  stopPropagation = (e) => e.stopPropagation();
+
+  pickGarment = (type) => this.setState({ garmentType: type });
+
+  pickSize = (label) => this.setState({ size: label });
+
+  select = (id) => this.setState({ activeId: id });
+
+  deleteLayer = (side, id) => {
+    this.setState(s => ({
+      layers: { ...s.layers, [side]: s.layers[side].filter(l => l.id !== id) },
+      activeId: s.activeId === id ? null : s.activeId
+    }));
+    if (this._textTextureCache && this._textTextureCache.has(id)) {
+      this._textTextureCache.get(id).tex.dispose();
+      this._textTextureCache.delete(id);
+    }
+    this._decalsDirty = true;
+    this._galleryDirty = true;
+  };
+
+  onUpload = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const id = this.nextId++;
+      const side = this.getActiveSide();
+      const layer = { id, kind: 'image', src: ev.target.result, x: 50, y: 45, rot: 0, scale: 1 };
+      this.setState(s => ({
+        layers: { ...s.layers, [side]: [...s.layers[side], layer] },
+        activeId: id
+      }));
+      this._decalsDirty = true;
+      this._galleryDirty = true;
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  };
+
+  addText = () => {
+    const id = this.nextId++;
+    const side = this.getActiveSide();
+    const layer = { id, kind: 'text', text: 'Твой текст', color: '#FF5C38', fontSize: 32, x: 50, y: 45, rot: 0, scale: 1 };
+    this.setState(s => ({
+      layers: { ...s.layers, [side]: [...s.layers[side], layer] },
+      activeId: id
+    }));
+    this._decalsDirty = true;
+    this._galleryDirty = true;
+  };
+
+  updateActiveLayer = (patch) => {
+    const side = this.getActiveSide();
+    const id = this.state.activeId;
+    if (!id) return;
+    this.setState(s => ({
+      layers: { ...s.layers, [side]: s.layers[side].map(l => l.id === id ? { ...l, ...patch } : l) }
+    }));
+    this._decalsDirty = true;
+    this._galleryDirty = true;
+  };
+
+  addToCart = () => {
+    this.flyToCart();
+    this.setState({ cartMsg: 'Добавлено в корзину — переходи в корзину, чтобы оформить заказ.' });
+    clearTimeout(this._cartTimer);
+    this._cartTimer = setTimeout(() => this.setState({ cartMsg: '' }), 4000);
+  };
+
+  setCartIconRef = (el) => { this._cartIcon = el; };
+  setAddToCartBtnRef = (el) => { this._addToCartBtn = el; };
+
+  flyToCart = () => {
+    if (!this._addToCartBtn || !this._cartIcon) return;
+    const btnRect = this._addToCartBtn.getBoundingClientRect();
+    const cartRect = this._cartIcon.getBoundingClientRect();
+    const color = this.state.garmentColor || '#FF5C38';
+    const size = 46;
+
+    const startX = btnRect.left + btnRect.width / 2 - size / 2;
+    const startY = btnRect.top + btnRect.height / 2 - size / 2;
+    const endX = cartRect.left + cartRect.width / 2 - size / 2;
+    const endY = cartRect.top + cartRect.height / 2 - size / 2;
+
+    const el = document.createElement('div');
+    el.style.cssText = `position:fixed;left:0;top:0;z-index:200;pointer-events:none;width:${size}px;height:${size}px;transform:translate(${startX}px,${startY}px) rotate(0deg) scale(1);opacity:1;transition:transform .75s cubic-bezier(.4,0,.2,1),opacity .75s ease;filter:drop-shadow(0 12px 20px rgba(0,0,0,.55))`;
+    el.innerHTML = `<svg viewBox="0 0 40 40" width="100%" height="100%">
+      <path d="M10 12 L2 16 L6 24 L10 20 Z" fill="${color}"></path>
+      <path d="M30 12 L38 16 L34 24 L30 20 Z" fill="${color}"></path>
+      <rect x="10" y="12" width="20" height="24" rx="4" fill="${color}"></rect>
+      <path d="M16 12 Q20 17 24 12" stroke="rgba(0,0,0,.28)" stroke-width="2" fill="none"></path>
+    </svg>`;
+    document.body.appendChild(el);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        el.style.transform = `translate(${endX}px,${endY}px) rotate(340deg) scale(.15)`;
+        el.style.opacity = '.2';
+      });
+    });
+
+    setTimeout(() => {
+      el.remove();
+      this.bumpCart();
+    }, 750);
+  };
+
+  bumpCart = () => {
+    this.setState(s => ({ cartCount: s.cartCount + 1 }));
+    const icon = this._cartIcon;
+    if (!icon) return;
+    icon.style.transition = 'transform .3s cubic-bezier(.4,0,.2,1.5)';
+    icon.style.transform = 'scale(1.28)';
+    setTimeout(() => { icon.style.transform = 'scale(1)'; }, 180);
+  };
+
+  // --- drag / resize / rotate ---
+  startDrag = (side, id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.select(id);
+    const stage = this._stage;
+    if (!stage) return;
+    const rect = stage.getBoundingClientRect();
+    const layer = this.state.layers[side].find(l => l.id === id);
+    const move = (ev) => {
+      const dx = ((ev.clientX - e.clientX) / rect.width) * 100;
+      const dy = ((ev.clientY - e.clientY) / rect.height) * 100;
+      let nx = layer.x + dx, ny = layer.y + dy;
+      nx = Math.max(5, Math.min(95, nx));
+      ny = Math.max(5, Math.min(95, ny));
+      this.updateActiveLayer({ x: nx, y: ny });
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  startResize = (side, id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const layer = this.state.layers[side].find(l => l.id === id);
+    const startX = e.clientX;
+    const startScale = layer.scale;
+    const move = (ev) => {
+      const dx = ev.clientX - startX;
+      const ns = Math.max(0.3, Math.min(3, startScale + dx / 120));
+      this.updateActiveLayer({ scale: ns });
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  startRotate = (side, id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const stage = this._stage;
+    const layer = this.state.layers[side].find(l => l.id === id);
+    const rect = stage.getBoundingClientRect();
+    const cx = rect.left + (layer.x / 100) * rect.width;
+    const cy = rect.top + (layer.y / 100) * rect.height;
+    const startAngle = Math.atan2(e.clientY - cy, e.clientX - cx) * 180 / Math.PI;
+    const startRot = layer.rot;
+    const move = (ev) => {
+      const angle = Math.atan2(ev.clientY - cy, ev.clientX - cx) * 180 / Math.PI;
+      this.updateActiveLayer({ rot: startRot + (angle - startAngle) });
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  buildLayers(side) {
+    const active = this.state.activeId;
+    return this.state.layers[side].map(l => ({
+      id: l.id,
+      isImage: l.kind === 'image',
+      isText: l.kind === 'text',
+      bgImage: l.kind === 'image' ? 'url("' + l.src + '")' : 'none',
+      text: l.text,
+      color: l.color,
+      fontSize: (l.fontSize || 32) + 'px',
+      x: l.x + '%',
+      y: l.y + '%',
+      transform: `translate(-50%,-50%) rotate(${l.rot}deg) scale(${l.scale})`,
+      selected: l.id === active,
+      outline: l.id === active ? '1.5px dashed rgba(255,92,56,.8)' : 'none',
+      onDown: (e) => this.startDrag(side, l.id, e),
+      onResize: (e) => this.startResize(side, l.id, e),
+      onRotate: (e) => this.startRotate(side, l.id, e)
+    }));
+  }
+
+  renderVals() {
+    const { yaw, garmentType, garmentColor, sceneMode, size, layers, activeId, cartMsg, modelStatus } = this.state;
+    const side = this.getActiveSide();
+    const normalized = ((yaw % 360) + 360) % 360;
+    const distFront = Math.min(normalized, 360 - normalized);
+    const distBack = Math.abs(normalized - 180);
+    const EDIT_THRESHOLD = 35;
+    const is3D = sceneMode === '3d';
+    const is2D = sceneMode === '2d';
+    const { gallery, galleryIndex } = this.state;
+
+    const PRESET_COLORS = ['#F5F5F4', '#0B0B0C', '#FF5C38', '#C2410C', '#1F2A44', '#6B7280'];
+
+    const garmentTypesData = [
+      { key: 'tshirt', label: 'Футболка', price: '990 ₽' }
+    ];
+    const basePriceMap = { tshirt: 990, hoodie: 2290, sweatshirt: 1890 };
+
+    const totalLayers = layers.front.length + layers.back.length;
+    const printPrice = totalLayers * 250;
+    const total = basePriceMap[garmentType] + printPrice;
+
+    const activeLayer = [...layers.front, ...layers.back].find(l => l.id === activeId);
+
+    const currentLayersRaw = layers[side];
+
+    const modelHintMap = {
+      loading: 'Загружаем 3D-модель…',
+      missing: 'Не найден assets/tshirt.glb — положите файл 3D-модели футболки в эту папку.',
+      error: 'Не удалось загрузить 3D-модель футболки.',
+      webgl_unavailable: 'В этом браузере/окружении недоступен WebGL (часто бывает в виртуальных машинах без GPU-ускорения) — включите программный рендеринг: chrome://flags/#enable-unsafe-swiftshader → Enabled → перезапустить браузер.'
+    };
+
+    return {
+      startYawDrag: this.startYawDrag,
+      yawCursor: this.state.dragging ? 'grabbing' : 'grab',
+      setStageRef: this.setStageRef,
+      setCanvasRef: this.setCanvasRef,
+      modelHint: modelHintMap[modelStatus] || null,
+      modelIconAnim: modelStatus === 'loading' ? 'pf-spin 1.4s linear infinite' : 'none',
+      showFrontLayers: is3D && distFront <= EDIT_THRESHOLD,
+      showBackLayers: is3D && distBack <= EDIT_THRESHOLD,
+
+      mode3DDisplay: is3D ? 'block' : 'none',
+      is2D,
+      mode3DBg: is3D ? 'linear-gradient(135deg,#FF7A54,#FF5C38)' : 'transparent',
+      mode3DFg: is3D ? '#0B0B0C' : 'rgba(237,237,238,.6)',
+      mode2DBg: is2D ? 'linear-gradient(135deg,#FF7A54,#FF5C38)' : 'transparent',
+      mode2DFg: is2D ? '#0B0B0C' : 'rgba(237,237,238,.6)',
+      pick3D: () => this.pickSceneMode('3d'),
+      pick2D: () => this.pickSceneMode('2d'),
+
+      handleTouchStart: this.handleTouchStart,
+      handleTouchMove: this.handleTouchMove,
+      handleTouchEnd: this.handleTouchEnd,
+      zoomIn: this.zoomIn,
+      zoomOut: this.zoomOut,
+      zoom: this.state.zoom || 1,
+
+      galleryReady: gallery.length > 0,
+      galleryLoading: gallery.length === 0,
+      galleryImg: gallery.length ? gallery[galleryIndex % gallery.length].src : null,
+      galleryPrev: this.galleryPrev,
+      galleryNext: this.galleryNext,
+      galleryDots: gallery.map((g, i) => ({
+        size: i === galleryIndex ? '9px' : '7px',
+        bg: i === galleryIndex ? '#FF5C38' : 'rgba(255,255,255,.25)',
+        onPick: () => this.setState({ galleryIndex: i })
+      })),
+
+      colorPresets: PRESET_COLORS.map(hex => ({
+        hex,
+        border: hex.toLowerCase() === garmentColor.toLowerCase() ? '#fff' : 'rgba(255,255,255,.18)',
+        shadow: hex.toLowerCase() === garmentColor.toLowerCase() ? '0 0 0 2px rgba(255,255,255,.15)' : 'none',
+        onPick: () => this.pickColor(hex)
+      })),
+
+      garmentColor,
+
+      frontLayers: this.buildLayers('front'),
+      backLayers: this.buildLayers('back'),
+      currentLayers: currentLayersRaw.map(l => ({
+        label: l.kind === 'image' ? 'Изображение' : (l.text || 'Текст'),
+        thumb: l.kind === 'image' ? 'url("' + l.src + '")' : 'none',
+        swatchColor: l.kind === 'text' ? l.color : '#26262a',
+        rowBg: l.id === activeId ? 'rgba(255,92,56,.13)' : 'rgba(255,255,255,.035)',
+        rowBorder: l.id === activeId ? 'rgba(255,92,56,.4)' : 'rgba(255,255,255,.06)',
+        onSelect: () => this.select(l.id),
+        onDelete: (e) => { e.stopPropagation(); this.deleteLayer(side, l.id); }
+      })),
+      noLayers: currentLayersRaw.length === 0,
+      hasAnyLayers: currentLayersRaw.length > 0,
+
+      onGarmentColorPick: (e) => this.pickColor(e.target.value),
+
+      onUpload: this.onUpload,
+      addText: this.addText,
+      hasActiveText: !!activeLayer && activeLayer.kind === 'text',
+      noActiveText: !(!!activeLayer && activeLayer.kind === 'text'),
+      activeText: activeLayer && activeLayer.kind === 'text' ? activeLayer.text : '',
+      onActiveTextChange: (e) => this.updateActiveLayer({ text: e.target.value }),
+      activeFontSize: activeLayer && activeLayer.kind === 'text' ? activeLayer.fontSize : 32,
+      onFontSizeChange: (e) => this.updateActiveLayer({ fontSize: Number(e.target.value) }),
+      activeColor: activeLayer && activeLayer.kind === 'text' ? activeLayer.color : '#FF5C38',
+      onActiveColorPick: (e) => this.updateActiveLayer({ color: e.target.value }),
+      onActiveHexInput: (e) => {
+        const v = e.target.value;
+        if (/^#([0-9A-Fa-f]{6})$/.test(v)) this.updateActiveLayer({ color: v });
+      },
+
+      garmentTypes: garmentTypesData.map(g => ({
+        ...g,
+        selected: garmentType === g.key,
+        border: garmentType === g.key ? 'rgba(255,92,56,.55)' : 'rgba(255,255,255,.1)',
+        bg: garmentType === g.key ? 'rgba(255,92,56,.1)' : 'rgba(255,255,255,.02)',
+        fg: garmentType === g.key ? '#FF5C38' : '#EDEDEE',
+        dotBorder: garmentType === g.key ? '#FF5C38' : 'rgba(255,255,255,.25)',
+        onPick: () => this.pickGarment(g.key)
+      })),
+      sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'].map(label => ({
+        label,
+        border: size === label ? '#FF5C38' : 'rgba(255,255,255,.1)',
+        bg: size === label ? 'rgba(255,92,56,.12)' : 'transparent',
+        fg: size === label ? '#FF5C38' : '#EDEDEE',
+        onPick: () => this.pickSize(label)
+      })),
+
+      sizeChartOpen: this.state.sizeChartOpen,
+      openSizeChart: this.openSizeChart,
+      closeSizeChart: this.closeSizeChart,
+      stopPropagation: this.stopPropagation,
+      sizeChartRows: [
+        { label: 'XS', chest: 42, length: 66, sleeve: 19 },
+        { label: 'S', chest: 46, length: 68, sleeve: 20 },
+        { label: 'M', chest: 50, length: 70, sleeve: 21 },
+        { label: 'L', chest: 54, length: 72, sleeve: 22 },
+        { label: 'XL', chest: 58, length: 74, sleeve: 23 },
+        { label: 'XXL', chest: 62, length: 76, sleeve: 24 },
+        { label: 'XXXL', chest: 66, length: 78, sleeve: 25 }
+      ].map(row => ({
+        ...row,
+        bg: size === row.label ? 'rgba(255,92,56,.13)' : 'transparent',
+        fg: size === row.label ? '#FF5C38' : '#EDEDEE'
+      })),
+
+      priceLabel: total.toLocaleString('ru-RU') + ' ₽',
+      addToCart: this.addToCart,
+      setCartIconRef: this.setCartIconRef,
+      setAddToCartBtnRef: this.setAddToCartBtnRef,
+      cartCount: this.state.cartCount || null,
+      cartMsg
+    };
+  }
+}
+
+</script>
+</body>
+</html>

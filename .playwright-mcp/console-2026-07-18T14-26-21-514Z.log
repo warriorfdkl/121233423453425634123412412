@@ -1,0 +1,6 @@
+[     290ms] ReferenceError: t396_allgroups__renderView is not defined
+    at https://kirarock.team/:354:16123
+[     293ms] ReferenceError: t396_allgroups__renderView is not defined
+    at https://kirarock.team/:581:16125
+[    2260ms] [LOG] blockScroll JSHandle@node @ https://kirarock.team/:353
+[    2260ms] [LOG] blockScroll JSHandle@node @ https://kirarock.team/:580

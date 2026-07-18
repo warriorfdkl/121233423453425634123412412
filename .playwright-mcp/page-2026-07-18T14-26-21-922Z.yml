@@ -1,0 +1,265 @@
+- generic [ref=f9e2]:
+  - banner
+  - generic [ref=f9e3]:
+    - link [ref=f9e7] [cursor=pointer]:
+      - /url: "#order"
+    - link [ref=f9e9] [cursor=pointer]:
+      - /url: "#order"
+    - link [ref=f9e11] [cursor=pointer]:
+      - /url: "#order"
+    - link [ref=f9e13] [cursor=pointer]:
+      - /url: /
+    - link [ref=f9e15] [cursor=pointer]:
+      - /url: "#menuopen2"
+  - generic:
+    - generic:
+      - generic:
+        - link [ref=f9e17] [cursor=pointer]:
+          - /url: "#menuopen"
+        - link [ref=f9e19] [cursor=pointer]:
+          - /url: /
+        - link [ref=f9e21] [cursor=pointer]:
+          - /url: "#order"
+        - link [ref=f9e23] [cursor=pointer]:
+          - /url: "#order"
+  - generic [ref=f9e26]:
+    - generic [ref=f9e30]:
+      - generic [ref=f9e31]: Казань ул. Островского 102 офис 306
+      - generic [ref=f9e34]:
+        - link "+7 495 960-57-31" [ref=f9e37] [cursor=pointer]:
+          - /url: tel:+7 495 960-57-31
+        - link "hello@kirarock.team" [ref=f9e40] [cursor=pointer]:
+          - /url: mailto:hello@kirarock.team
+      - generic [ref=f9e42]:
+        - link "telegram" [ref=f9e45] [cursor=pointer]:
+          - /url: https://t.me/kirarocktalk
+        - link "vk" [ref=f9e48] [cursor=pointer]:
+          - /url: https://vk.com/kirarockteam
+    - heading "Разработка информационных систем и сервисов для государства и корпораций" [level=1] [ref=f9e50]
+    - link [ref=f9e54] [cursor=pointer]:
+      - /url: https://s3.timeweb.cloud/4151e8d2-4-6.digital/kirarock/KiraRock2024.pdf
+    - link [ref=f9e56] [cursor=pointer]:
+      - /url: "#order"
+    - link [ref=f9e58] [cursor=pointer]:
+      - /url: "#order"
+  - generic [ref=f9e61]:
+    - generic [ref=f9e64]: "60"
+    - generic [ref=f9e68]: проектов
+    - generic [ref=f9e70]: Работаем с готовыми продуктами со сложной архитектурой, и со стартапами, у которых есть только идея
+    - generic [ref=f9e74]: "8"
+    - generic [ref=f9e76]: лет на рынке
+    - generic [ref=f9e78]: "Широкий отраслевой опыт: от городских информационных систем и сервисов, до СМИ, банкинга и логистических систем"
+    - generic [ref=f9e82]: "6"
+    - generic [ref=f9e84]: человек в команде проекта
+    - generic [ref=f9e86]: В нашей команде работают специалисты с опытом не ниже уровня Middle
+  - generic [ref=f9e94]:
+    - generic [ref=f9e95]: Результатами наших услуг пользуются
+    - generic [ref=f9e98]:
+      - generic [ref=f9e99]: Аппарат раиса рт
+      - generic [ref=f9e102]: Аппарат президента РФ
+      - generic [ref=f9e105]: Мэрия города Казани
+      - generic [ref=f9e107]: ГТО
+      - generic [ref=f9e110]: Транснефть (Поволжье)
+      - generic [ref=f9e113]: Райффайзен банк
+      - generic [ref=f9e116]: Innopolis
+      - generic [ref=f9e119]: IT Park
+      - generic [ref=f9e122]: ВТБ
+      - generic [ref=f9e125]: Министерство здравоохранения РТ
+      - generic [ref=f9e127]: Управление образования города Казани
+      - generic [ref=f9e129]: Дирекция спортивных и социальных проектов
+      - generic [ref=f9e131]: Университет талантов
+      - generic [ref=f9e134]: Вечерняя Казань
+      - generic [ref=f9e137]: ICL
+      - generic [ref=f9e140]: Агенство инвестиционного развития РТ
+      - generic [ref=f9e142]: Министерство молодёжи РТ
+      - generic [ref=f9e144]: Cбербанк
+  - generic [ref=f9e148]:
+    - generic [ref=f9e158]:
+      - generic [ref=f9e159]: Услуги
+      - link [ref=f9e163] [cursor=pointer]:
+        - /url: /services
+    - generic [ref=f9e165]:
+      - generic [ref=f9e166]: IT-консалтинг
+      - generic [ref=f9e168]: Начните с диагностики — это поможет сэкономить время и бюджет.
+    - generic [ref=f9e171]:
+      - generic [ref=f9e172]: Развитие готовых систем
+      - generic [ref=f9e174]: Эволюция систем вместе с вашим бизнесом.
+    - generic [ref=f9e177]:
+      - generic [ref=f9e178]: Техническая поддержка
+      - generic [ref=f9e180]: Ваши системы должны работать как часы, даже если их создавали не мы.
+    - generic [ref=f9e183]:
+      - generic [ref=f9e184]: Разработка информационных систем и сервисов
+      - generic [ref=f9e186]: Индивидуальные решения для вас, основанные на нашем опыте.
+    - generic [ref=f9e189]:
+      - generic [ref=f9e190]: Серверная эксплуатация
+      - generic [ref=f9e192]: Стабильность и безопасность ваших данных — наша зона ответственности.
+  - generic [ref=f9e200]:
+    - generic [ref=f9e219]: Образование
+    - generic [ref=f9e221]: СМИ
+    - generic [ref=f9e224]: Банки
+    - generic [ref=f9e227]: ГОРОДСКИЕ СЕРВИСЫ
+    - generic [ref=f9e229]: культура
+    - generic [ref=f9e232]: Логистика
+    - generic [ref=f9e235]: Спорт
+    - generic [ref=f9e237]: мероприятия
+    - generic [ref=f9e240]: Отраслевой опыт
+  - generic [ref=f9e249]:
+    - generic [ref=f9e250]: Кейсы
+    - link [ref=f9e254] [cursor=pointer]:
+      - /url: /cases
+  - generic [ref=f9e264]:
+    - generic [ref=f9e265]: Омниканальный единый контакт-центр
+    - generic [ref=f9e273]: Платформа для жителей города «Моя Казань»
+    - generic [ref=f9e281]: Информационная система для судей и участников ГТО
+    - generic [ref=f9e289]: Интеграция кадровых систем
+    - generic [ref=f9e297]: Туристический портал
+    - generic [ref=f9e305]: Система управления мероприятиями «Инфодеск»
+    - generic [ref=f9e313]: Портал открытых данных города Казани
+    - generic [ref=f9e321]: Образовательный портал
+    - generic [ref=f9e329]: Система организации деятельности уличных артистов ART-проспект
+    - generic [ref=f9e337]: ТГ-Бот Вакцинация Казань
+    - generic [ref=f9e345]: Билетная система
+    - generic [ref=f9e353]: Корпоративный портал и EdTech- платформа
+    - generic [ref=f9e361]: Система управления логистикой
+    - generic [ref=f9e369]: Международный финтех-проект
+    - generic [ref=f9e377]: Новостная платформа «Вечерняя Казань»
+    - generic [ref=f9e385]: Новостной портал «kazanfirst»
+    - generic [ref=f9e393]: Агрегатор событий и новостей
+    - generic [ref=f9e401]: Корпоративные сайты группы IT компаний ICL
+    - generic [ref=f9e409]: CTRL SHIFT!
+    - generic [ref=f9e417]: Новостная платформа
+  - generic [ref=f9e438]:
+    - generic [ref=f9e483]: Сопровождениеи развитие проектов
+    - generic [ref=f9e485]: Организация работ по безопасности систем
+    - generic [ref=f9e489]: Внедрение и интеграция BI-cистем
+    - generic [ref=f9e491]: Формирование документациипо ГОСТ
+    - generic [ref=f9e495]: Работапо 44/223 ФЗ
+    - generic [ref=f9e497]: Консалтинг и Внедрение цифровых продуктов
+    - generic [ref=f9e501]: Экспертный опыт
+  - generic [ref=f9e509]:
+    - generic [ref=f9e510]: наши решения
+    - link [ref=f9e513] [cursor=pointer]:
+      - /url: /solutions
+  - generic [ref=f9e521]:
+    - generic [ref=f9e527]:
+      - generic [ref=f9e528]: Личные кабинеты для сотрудников и клиентов (MES)
+      - generic [ref=f9e530]: "Персонализированный сервис: история заказов, коммуникации и аналитика клиентов в одном интерфейсе."
+    - generic [ref=f9e537]:
+      - generic [ref=f9e538]: Business Intelligence (BI)
+      - generic [ref=f9e540]: Набор инструментов и программ для бизнеса, которые собирают данные из разных источников, обрабатывают их и представляют в наглядном виде.
+    - generic [ref=f9e547]:
+      - generic [ref=f9e548]: Платформы для мероприятий
+      - generic [ref=f9e550]: "Организация спортивных, бизнес — и культурных событий: регистрация, аккредитация участников, расписания, трансферы, рассадки и аналитика."
+    - generic [ref=f9e557]:
+      - generic [ref=f9e558]: "LMS: Дистанционное обучение"
+      - generic [ref=f9e560]: Интерактивные курсы, тестирование и трекинг прогресса с поддержкой мобильных устройств.
+    - generic [ref=f9e567]:
+      - generic [ref=f9e568]: ETL / Адаптеры и шины данных
+      - generic [ref=f9e570]: Миграция данных из одного источника в другой. Интеграции систем между друг другом. Выгрузка, преобразование и загрузка данных из любых источников. Разработка и интеграция под индивидуальный ИТ-ландшафт заказчика с соблюдением 152-ФЗ и требований ФСТЭК.
+    - generic [ref=f9e577]:
+      - generic [ref=f9e578]: Платформы открытых данных
+      - generic [ref=f9e580]: Структурированные наборы общедоступной информации, пригодные для автоматизированного извлечения, преобразования и загрузки. Публикация структурированных наборов общедоступной информации повышает прозрачность работы, является фундаментом формирования датацентричной культуры и необходимым шагом для формирования системы управления на данных.
+    - generic [ref=f9e587]:
+      - generic [ref=f9e588]: "CMS: Управление контентом"
+      - generic [ref=f9e590]: Создание, редактирование и публикация контента в любых форматах для медиа, корпоративных порталов и цифровых изданий.
+    - generic [ref=f9e597]:
+      - generic [ref=f9e598]: HR-платформы и управление талантами
+      - generic [ref=f9e600]: "Централизованный учёт данных сотрудников: от найма и расчёта зарплат с защитой персональной информации до развития сотрудников, кадрового резерва и интеграции с HR-процессами через оценку компетенций."
+    - generic [ref=f9e607]:
+      - generic [ref=f9e608]: Корпоративные порталы
+      - generic [ref=f9e610]: Базы знаний и управление задачами через удобный интерфейс.
+    - generic [ref=f9e617]:
+      - generic [ref=f9e618]: Логистические системы
+      - generic [ref=f9e620]: Управление маршрутами, складами и автоматизация документооборота.
+    - generic [ref=f9e627]:
+      - generic [ref=f9e628]: Приложения для мобильного персонала
+      - generic [ref=f9e630]: Управление задачами, GPS-трекинг и синхронизация данных для полевых сотрудников.
+    - generic [ref=f9e637]:
+      - generic [ref=f9e638]: Омниканальные контакт-центры
+      - generic [ref=f9e640]: Единая платформа для чатов, звонков и соцсетей с аналитикой обращений и чат-ботами.
+    - generic [ref=f9e647]:
+      - generic [ref=f9e648]: CRM-системы
+      - generic [ref=f9e650]: "Сквозное управление клиентским циклом: от лидов до повышения лояльности с аналитикой и автоматизацией."
+    - generic [ref=f9e657]:
+      - generic [ref=f9e658]: Telegram-боты
+      - generic [ref=f9e660]: "Автоматизация обратной связи через чаты или PWA-приложения: сбор запросов, жалоб и отзывов с интеграцией в CRM/Helpdesk."
+    - generic [ref=f9e667]:
+      - generic [ref=f9e668]: PWA-приложения
+      - generic [ref=f9e671]: Отдельные интерфейсы с самым необходимым функционалом для быстрого внесения и просмотра данных «на лету».
+  - generic [ref=f9e688]:
+    - generic [ref=f9e691]: команда Kira & rock
+    - generic [ref=f9e693]: Больше 8 лет мы занимаемся разработкой и развитием информационных систем, веб-сервисов и цифровых продуктов среднего и высокого уровня сложности для наших клиентов. И делаем это хорошо!
+    - generic [ref=f9e696]:
+      - text: Хочешь стать частью команды? Пиши на почту
+      - link "hr@kirarock.team" [ref=f9e697] [cursor=pointer]:
+        - /url: mailto:hr@kirarock.team
+      - text: Так же мы на
+      - link "HeadHunter" [ref=f9e698] [cursor=pointer]:
+        - /url: https://spb.hh.ru/employer/5175870
+      - text: и
+      - link "Habr" [ref=f9e699] [cursor=pointer]:
+        - /url: https://career.habr.com/companies/kirarock
+    - generic [ref=f9e702]: КириллМиленький
+    - generic [ref=f9e704]: Управляющий партнёр — продакшн директор
+  - generic [ref=f9e710]:
+    - generic [ref=f9e713]: Kira & rock в разработке знает толк
+    - generic [ref=f9e715]: Мы не ограничиваемся технологиями, указанными в этом списке. Если вы не нашли нужный для своего проекта фреймворк, напишите нам.
+    - generic [ref=f9e717]: Возможно, у нас уже есть специалист, который его знает. Если его ещё нет в нашей команде, возможно пришло время его найти.
+    - generic [ref=f9e719]: Frontend
+    - generic [ref=f9e724]: JS, TS, Vue
+    - generic [ref=f9e726]: Backend
+    - generic [ref=f9e728]: PHP, Laravel, MySQL, PostgreSQL, ClickHouse, Keycloak
+    - generic [ref=f9e730]: Mobile
+    - generic [ref=f9e732]: PWA, Capacitor
+    - generic [ref=f9e734]: Design
+    - generic [ref=f9e736]: Figma, Photoshop, Illustrator, Vuetify
+    - generic [ref=f9e740]: Confluence, BI, Drow.IO, Figma
+    - generic [ref=f9e742]: Аналитика
+    - generic [ref=f9e746]: Менеджмент
+    - generic [ref=f9e748]: ActiveCollab, Float, Gant, Kanban
+  - generic [ref=f9e764]:
+    - generic [ref=f9e765]: О нас
+    - link [ref=f9e768] [cursor=pointer]:
+      - /url: /about
+  - contentinfo [ref=f9e769]:
+    - generic [ref=f9e772]:
+      - generic [ref=f9e775]: Заказать проект
+      - generic [ref=f9e778]:
+        - text: "Присылайте бриф или звоните:"
+        - link "+7 495 960-57-31" [ref=f9e779] [cursor=pointer]:
+          - /url: tel:+7 495 960-57-31
+    - generic [ref=f9e782]:
+      - link [ref=f9e796] [cursor=pointer]:
+        - /url: "#send"
+      - link [ref=f9e798] [cursor=pointer]:
+        - /url: "#send"
+      - generic [ref=f9e800]:
+        - text: Нажимая кнопку «Отправить сообщение», я даю согласие на
+        - link "обработку персональных данных." [ref=f9e801] [cursor=pointer]:
+          - /url: https://1770bd77-a505-4fcc-83d7-ef989cc5c454.selstorage.ru/site%20kr/%D0%A1%D0%BE%D0%B3%D0%BB%D0%B0%D1%81%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D1%83_%D0%9F%D0%94_%D0%BD%D0%B0_%D1%81%D0%B0%D0%B8%CC%86%D1%82_%D0%9A%D0%B8%D0%A0.pdf
+        - link "Узнать больше" [ref=f9e802] [cursor=pointer]:
+          - /url: https://1770bd77-a505-4fcc-83d7-ef989cc5c454.selstorage.ru/site%20kr/%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0_%D0%B2_%D0%BE%D1%82%D0%BD%D0%BE%D1%88%D0%B5%D0%BD%D0%B8%D0%B8_%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B8_%D0%9F%D0%94_%D0%BD%D0%B0_%D1%81%D0%B0%D0%B8%CC%86%D1%82_%D0%9A%D0%B8%D0%A0.pdf
+        - text: о политике обработки персональных данных
+      - link [ref=f9e804] [cursor=pointer]:
+        - /url: "#send"
+      - link [ref=f9e810] [cursor=pointer]:
+        - /url: "#send"
+      - link [ref=f9e812] [cursor=pointer]:
+        - /url: "#send"
+      - link [ref=f9e814] [cursor=pointer]:
+        - /url: "#send"
+      - link [ref=f9e816] [cursor=pointer]:
+        - /url: "#send"
+    - generic [ref=f9e821]:
+      - generic [ref=f9e824]: ©KIRA&ROCK
+      - link "Юридическая информация об организации" [ref=f9e829] [cursor=pointer]:
+        - /url: https://kirarock.team/iuridiceskaia-informaciia-ob-organizacii
+      - generic [ref=f9e830]: Казань, ул. Островского 102, офис 306
+      - link "hello@kirarock.team" [ref=f9e834] [cursor=pointer]:
+        - /url: mailto:hello@kirarock.team
+      - link "+7 495 960-57-31" [ref=f9e837] [cursor=pointer]:
+        - /url: tel:+7 495 960-57-31
+      - link "telegram" [ref=f9e840] [cursor=pointer]:
+        - /url: https://t.me/kirarocktalk
+      - link "vk" [ref=f9e843] [cursor=pointer]:
+        - /url: https://vk.com/kirarockteam

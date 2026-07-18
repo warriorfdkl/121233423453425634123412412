@@ -1,0 +1,43 @@
+/*
+ * Page-header pattern (breadcrumb + title row) shared by catalog, cart,
+ * favorites, account and constructor. One definition, loaded once in
+ * index.css, instead of a copy living inside whichever page happened to
+ * be built first.
+ */
+.catalog-header {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 3vw, 48px) 0;
+}
+.catalog-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--pf-text-dim-65);
+  margin-bottom: 28px;
+}
+.catalog-breadcrumb a {
+  text-decoration: none;
+}
+.catalog-title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.catalog-title-row h1 {
+  font-weight: 500;
+  font-size: clamp(34px, 3.6vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.catalog-title-row p {
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 300;
+  color: var(--pf-text-dim-65);
+  max-width: 44ch;
+}

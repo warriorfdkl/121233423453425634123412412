@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f0eee9;font-family:'Onest',system-ui,sans-serif}
+.demo{width:520px;height:560px;overflow-y:auto;overflow-x:hidden;border-radius:14px;background:#0B0B0C;position:relative;scroll-behavior:smooth}
+.demo::-webkit-scrollbar{width:8px}
+.demo::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:99px}
+.pat{background:repeating-linear-gradient(115deg,rgba(255,92,56,.06) 0px,rgba(255,92,56,.06) 1px,transparent 1px,transparent 22px),#0B0B0C}
+.nc{border-radius:18px;background:#141416;border:1px solid rgba(255,255,255,.08);padding:22px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box;color:#EDEDEE}
+.ncimg{aspect-ratio:16/9;border-radius:10px;background:repeating-linear-gradient(45deg,#1A1A1E 0 12px,#1F1F24 12px 24px)}
+</style>
+</helmet>
+<section id="t2" style="padding:40px 44px 32px">
+  <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px">
+    <a href="#t2" style="font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none">2</a>
+    <span style="font:500 13px 'Onest',sans-serif;color:#1a1a1a">Веерная раскладка как на референсе — карточки лежат внахлёст, но не закрывают друг друга целиком</span>
+  </div>
+  <p style="margin:0 0 20px;font:300 12px 'Onest',sans-serif;color:rgba(0,0,0,.55);max-width:680px">Каждая карта заезжает снизу под своим углом и остаётся в стопке чуть повёрнутой — как раскинутые игральные карты. Все три видны одновременно, ничего не перекрыто полностью.</p>
+  <div id="2a" style="flex:none;display:flex;flex-direction:column;gap:9px">
+    <div style="display:flex;align-items:baseline;gap:8px"><a href="#2a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none">2a</a><span style="font:400 11px 'Onest',sans-serif;color:rgba(0,0,0,.55)">Веер: карточки заезжают снизу и оседают внахлёст под углом</span></div>
+    <div class="demo pat" ref="{{ scrollRefD }}" onScroll="{{ handleScrollD }}" style="width:640px;height:600px">
+      <div style="height:60px;display:flex;align-items:center;padding:0 24px;font-size:12px;color:rgba(237,237,238,.4)">↓ крутите медленно — карточки по одной</div>
+      <div ref="{{ setFanZone }}" style="height:1300px;position:relative">
+        <div style="position:sticky;top:0;height:480px;overflow:visible">
+          <sc-for list="{{ newsD }}" as="n" hint-placeholder-count="3">
+            <div class="nc" style="position:absolute;width:44%;left:{{ n.left }};top:{{ n.top }};transform:{{ n.transformD }};opacity:{{ n.visibleD }};transition:opacity .5s ease,transform .5s ease;box-shadow:0 20px 40px rgba(0,0,0,.5);z-index:{{ n.z }}">
+              <div class="ncimg" style="display:flex;align-items:center;justify-content:center"><div style="font:400 10px ui-monospace,Menlo,monospace;color:rgba(237,237,238,.4)">{{ n.img }}</div></div>
+              <div style="font-weight:600;font-size:16px;line-height:1.35">{{ n.title }}</div>
+              <div style="font-size:12px;color:rgba(237,237,238,.45)">{{ n.date }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="height:200px"></div>
+    </div>
+    <div style="font:300 10.5px 'Onest',sans-serif;color:rgba(0,0,0,.45);max-width:460px;line-height:1.5">Финальное состояние — как на скриншоте 4-6.digital: три карточки веером, каждая читаема, ничего не спрятано целиком.</div>
+  </div>
+  <p style="margin:22px 0 0;font:300 12px 'Onest',sans-serif;color:rgba(0,0,0,.5)">Нравится — перенесу <a href="#2a" style="color:#1a1a1a">2a</a> на блок «Новости».</p>
+</section>
+
+<section id="t1" style="padding:40px 44px 32px">
+  <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px">
+    <a href="#t1" style="font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none">1</a>
+    <span style="font:500 13px 'Onest',sans-serif;color:#1a1a1a">Появление карточек по скроллу — 3 варианта (блок «Новости»)</span>
+  </div>
+  <p style="margin:0 0 20px;font:300 12px 'Onest',sans-serif;color:rgba(0,0,0,.55);max-width:680px">Каждый прямоугольник ниже — своя мини-страница со скроллом (крутите колесо прямо внутри неё). Настоящая версия будет крутиться вместе со всей страницей сайта.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+    <div id="1a" style="flex:none;display:flex;flex-direction:column;gap:9px">
+      <div style="display:flex;align-items:baseline;gap:8px"><a href="#1a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none">1a</a><span style="font:400 11px 'Onest',sans-serif;color:rgba(0,0,0,.55)">Стек внахлёст (карточки залипают и перекрывают друг друга)</span></div>
+      <div class="demo pat">
+        <div style="height:60px;display:flex;align-items:center;padding:0 24px;font-size:12px;color:rgba(237,237,238,.4);position:sticky;top:0;z-index:0">↓ крутите вниз</div>
+        <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
+          <div class="nc" style="position:sticky;top:{{ n.stickyTop }};margin:0 24px {{ n.gap }};box-shadow:0 -16px 40px rgba(0,0,0,.5)">
+            <div class="ncimg" style="display:flex;align-items:center;justify-content:center"><div style="font:400 10px ui-monospace,Menlo,monospace;color:rgba(237,237,238,.4)">{{ n.img }}</div></div>
+            <div style="font-weight:600;font-size:17px;line-height:1.35">{{ n.title }}</div>
+            <div style="font-size:12.5px;color:rgba(237,237,238,.45)">{{ n.date }}</div>
+          </div>
+        </sc-for>
+        <div style="height:80px"></div>
+      </div>
+      <div style="font:300 10.5px 'Onest',sans-serif;color:rgba(0,0,0,.45);max-width:400px;line-height:1.5">Чистый CSS (position:sticky), без JS. Каждая карточка «прилипает» и следующая наезжает сверху — эффект колоды карт. Надёжно и лёгкое для браузера.</div>
+    </div>
+
+    <div id="1b" style="flex:none;display:flex;flex-direction:column;gap:9px">
+      <div style="display:flex;align-items:baseline;gap:8px"><a href="#1b" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none">1b</a><span style="font:400 11px 'Onest',sans-serif;color:rgba(0,0,0,.55)">Проявление снизу-вверх по одной (классика)</span></div>
+      <div class="demo pat" ref="{{ scrollRefB }}">
+        <div style="height:60px;display:flex;align-items:center;padding:0 24px;font-size:12px;color:rgba(237,237,238,.4)">↓ крутите вниз</div>
+        <div style="height:60px"></div>
+        <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
+          <div ref="{{ n.setRefB }}" class="nc" style="margin:0 24px 220px;opacity:{{ n.visibleB }};transform:{{ n.transformB }};transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)">
+            <div class="ncimg" style="display:flex;align-items:center;justify-content:center"><div style="font:400 10px ui-monospace,Menlo,monospace;color:rgba(237,237,238,.4)">{{ n.img }}</div></div>
+            <div style="font-weight:600;font-size:17px;line-height:1.35">{{ n.title }}</div>
+            <div style="font-size:12.5px;color:rgba(237,237,238,.45)">{{ n.date }}</div>
+          </div>
+        </sc-for>
+        <div style="height:80px"></div>
+      </div>
+      <div style="font:300 10.5px 'Onest',sans-serif;color:rgba(0,0,0,.45);max-width:400px;line-height:1.5">IntersectionObserver: карточка появляется (fade + едет вверх на 24px), когда доезжает до видимой зоны. Самый привычный и «безопасный» эффект.</div>
+    </div>
+
+    <div id="1c" style="flex:none;display:flex;flex-direction:column;gap:9px">
+      <div style="display:flex;align-items:baseline;gap:8px"><a href="#1c" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none">1c</a><span style="font:400 11px 'Onest',sans-serif;color:rgba(0,0,0,.55)">Веером слева/справа + лёгкий поворот</span></div>
+      <div class="demo pat" ref="{{ scrollRefC }}">
+        <div style="height:60px;display:flex;align-items:center;padding:0 24px;font-size:12px;color:rgba(237,237,238,.4)">↓ крутите вниз</div>
+        <div style="height:60px"></div>
+        <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
+          <div ref="{{ n.setRefC }}" class="nc" style="margin:0 24px 220px;opacity:{{ n.visibleC }};transform:{{ n.transformC }};transition:opacity .65s cubic-bezier(.2,.7,.2,1),transform .65s cubic-bezier(.2,.7,.2,1)">
+            <div class="ncimg" style="display:flex;align-items:center;justify-content:center"><div style="font:400 10px ui-monospace,Menlo,monospace;color:rgba(237,237,238,.4)">{{ n.img }}</div></div>
+            <div style="font-weight:600;font-size:17px;line-height:1.35">{{ n.title }}</div>
+            <div style="font-size:12.5px;color:rgba(237,237,238,.45)">{{ n.date }}</div>
+          </div>
+        </sc-for>
+        <div style="height:80px"></div>
+      </div>
+      <div style="font:300 10.5px 'Onest',sans-serif;color:rgba(0,0,0,.45);max-width:400px;line-height:1.5">Карточки чередуются: заезжают то слева, то справа с небольшим поворотом (2°) — динамичнее, чуть больше «шоу», ближе к духу 4-6.digital.</div>
+    </div>
+
+  </div>
+  <p style="margin:22px 0 0;font:300 12px 'Onest',sans-serif;color:rgba(0,0,0,.5)">Скажите номер, например «<a href="#1b" style="color:#1a1a1a">1b</a>» — перенесу этот эффект на блок «Новости» на сайте.</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { visB: [false, false, false], visC: [false, false, false], visD: [false, false, false] };
+
+  componentDidMount() {
+    this._obsB = null;
+    this._obsC = null;
+    this._pollTimer = setInterval(() => {
+      let ready = 0;
+      if (!this._obsB && this._elsB && this._elsB.filter(Boolean).length === 3) {
+        this._obsB = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              const i = this._elsB.indexOf(e.target);
+              this.setState(s => { const v = [...s.visB]; v[i] = true; return { visB: v }; });
+            }
+          });
+        }, { root: this._scrollB, threshold: 0.3 });
+        this._elsB.forEach(el => this._obsB.observe(el));
+        ready++;
+      }
+      if (!this._obsC && this._elsC && this._elsC.filter(Boolean).length === 3) {
+        this._obsC = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              const i = this._elsC.indexOf(e.target);
+              this.setState(s => { const v = [...s.visC]; v[i] = true; return { visC: v }; });
+            }
+          });
+        }, { root: this._scrollC, threshold: 0.3 });
+        this._elsC.forEach(el => this._obsC.observe(el));
+        ready++;
+      }
+
+      if (this._obsB && this._obsC) clearInterval(this._pollTimer);
+    }, 250);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._pollTimer);
+    if (this._obsB) this._obsB.disconnect();
+    if (this._obsC) this._obsC.disconnect();
+  }
+
+  renderVals() {
+    const base = [
+      { title: 'Открыли доставку по всей России от 2 дней', date: '28 июня 2026', img: 'фото: упаковка заказа' },
+      { title: '−20% на вторую футболку до конца июля', date: '15 июня 2026', img: 'фото: парные футболки' },
+      { title: 'Как мы делаем макет из вашего фото: разбор', date: '2 июня 2026', img: 'фото: работа дизайнера' }
+    ];
+
+    this._elsB = this._elsB || [null, null, null];
+    this._elsC = this._elsC || [null, null, null];
+
+    const news = base.map((n, i) => ({
+      ...n,
+      stickyTop: (i * 28) + 'px',
+      gap: i === base.length - 1 ? '0' : '-160px',
+      visibleB: this.state.visB[i] ? 1 : 0,
+      transformB: this.state.visB[i] ? 'translateY(0)' : 'translateY(28px)',
+      setRefB: (el) => { this._elsB[i] = el; },
+      visibleC: this.state.visC[i] ? 1 : 0,
+      transformC: this.state.visC[i]
+        ? 'translateX(0) rotate(0deg)'
+        : (i % 2 === 0 ? 'translateX(-60px) rotate(-2deg)' : 'translateX(60px) rotate(2deg)'),
+      setRefC: (el) => { this._elsC[i] = el; }
+    }));
+
+    const fanConfig = [
+      { left: '1%', top: '90px', rot: -5, fromX: -180, fromY: 40 },
+      { left: '28%', top: '20px', rot: 3, fromX: 180, fromY: 40 },
+      { left: '55%', top: '100px', rot: -2, fromX: 0, fromY: 160 }
+    ];
+    const thresholds = [50, 300, 550];
+    const newsD = base.map((n, i) => ({
+      ...n,
+      left: fanConfig[i].left,
+      top: fanConfig[i].top,
+      z: i + 1,
+      visibleD: this.state.visD[i] ? 1 : 0,
+      transformD: this.state.visD[i]
+        ? `rotate(${fanConfig[i].rot}deg) translate(0,0)`
+        : `rotate(0deg) translate(${fanConfig[i].fromX}px, ${fanConfig[i].fromY}px)`
+    }));
+
+    return {
+      news,
+      newsD,
+      scrollRefB: (el) => { this._scrollB = el; },
+      scrollRefC: (el) => { this._scrollC = el; },
+      scrollRefD: (el) => { this._scrollD = el; },
+      setFanZone: (el) => { this._fanZone = el; },
+      handleScrollD: (e) => {
+        const st = e.target.scrollTop;
+        this.setState(s => {
+          const v = [...s.visD];
+          let changed = false;
+          thresholds.forEach((t, i) => { if (st > t && !v[i]) { v[i] = true; changed = true; } });
+          return changed ? { visD: v } : null;
+        });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

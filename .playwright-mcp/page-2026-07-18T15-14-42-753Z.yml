@@ -1,0 +1,124 @@
+- generic [ref=f11e2]:
+  - banner [ref=f11e3]:
+    - generic [ref=f11e4]:
+      - link [ref=f11e6] [cursor=pointer]:
+        - /url: /
+        - img "Printfee" [ref=f11e7]
+      - generic [ref=f11e8]:
+        - link "Избранное" [ref=f11e9] [cursor=pointer]:
+          - /url: /favorites
+        - link "Корзина" [ref=f11e12] [cursor=pointer]:
+          - /url: /cart
+        - 'link "Личный кабинет: Алина" [ref=f11e16] [cursor=pointer]':
+          - /url: /account
+        - button "Меню" [ref=f11e20] [cursor=pointer]
+  - main [ref=f11e23]:
+    - generic [ref=f11e24]:
+      - generic [ref=f11e29]:
+        - heading "Твой принт — Твои правила." [level=1] [ref=f11e30]:
+          - generic [ref=f11e31]: Твой принт —
+          - generic [ref=f11e32]: Твои правила.
+        - link "Создать принт" [ref=f11e33] [cursor=pointer]:
+          - /url: /constructor
+      - generic [ref=f11e36]:
+        - generic [ref=f11e37]:
+          - generic [ref=f11e38]: "01"
+          - text: О сервисе
+        - generic [ref=f11e39]:
+          - heading "Ноль шаблонов. Только твой дизайн" [level=2] [ref=f11e40]
+          - paragraph [ref=f11e41]: "Printfee соединяет тебя с производством напрямую: загружаешь картинку или идею — мы делаем макет, печатаем DTF за 24 часа и отправляем по всей России. Из Казани, от одной штуки."
+      - generic [ref=f11e42]:
+        - generic [ref=f11e43]:
+          - generic [ref=f11e44]: "02"
+          - text: Что мы делаем
+        - generic [ref=f11e45]:
+          - link "Загрузи фото, мем или рисунок — наложим на футболку и напечатаем за 24 часа. 01 Свой принт →" [ref=f11e46] [cursor=pointer]:
+            - /url: /constructor
+            - generic [ref=f11e47]: Загрузи фото, мем или рисунок — наложим на футболку и напечатаем за 24 часа.
+            - generic [ref=f11e48]:
+              - generic [ref=f11e49]: "01"
+              - generic [ref=f11e50]:
+                - generic [ref=f11e51]: Свой принт
+                - generic [ref=f11e52]: →
+          - link "Готовые дизайны, в которые можно подставить своё фото или надпись. 02 Каталог →" [ref=f11e53] [cursor=pointer]:
+            - /url: /catalog
+            - generic [ref=f11e54]: Готовые дизайны, в которые можно подставить своё фото или надпись.
+            - generic [ref=f11e55]:
+              - generic [ref=f11e56]: "02"
+              - generic [ref=f11e57]:
+                - generic [ref=f11e58]: Каталог
+                - generic [ref=f11e59]: →
+          - link "Нет макета — пришли идею. Дизайнер соберёт образ и покажет мокап до печати. 03 Макет за вас →" [ref=f11e60] [cursor=pointer]:
+            - /url: /catalog
+            - generic [ref=f11e61]: Нет макета — пришли идею. Дизайнер соберёт образ и покажет мокап до печати.
+            - generic [ref=f11e62]:
+              - generic [ref=f11e63]: "03"
+              - generic [ref=f11e64]:
+                - generic [ref=f11e65]: Макет за вас
+                - generic [ref=f11e66]: →
+      - generic [ref=f11e68]:
+        - generic [ref=f11e69]:
+          - generic [ref=f11e70]: 24 часа
+          - generic [ref=f11e71]: печать после согласования макета
+        - generic [ref=f11e72]:
+          - generic [ref=f11e73]: от 1 шт
+          - generic [ref=f11e74]: без минимального тиража
+        - generic [ref=f11e75]:
+          - generic [ref=f11e76]: 50+ стирок
+          - generic [ref=f11e77]: выдерживает DTF-печать
+      - generic [ref=f11e79]:
+        - generic [ref=f11e80]:
+          - generic [ref=f11e81]:
+            - generic [ref=f11e82]: "03"
+            - text: Новости и акции
+          - generic [ref=f11e83]: Успеваем любой заказ — от одной футболки до мерча на всю команду
+        - generic [ref=f11e85]:
+          - link "Открыли доставку по всей России от 2 дней 28 июня 2026" [ref=f11e86] [cursor=pointer]:
+            - /url: "#news"
+            - generic [ref=f11e88]:
+              - generic [ref=f11e89]: Открыли доставку по всей России от 2 дней
+              - generic [ref=f11e90]: 28 июня 2026
+          - link "−20% на вторую футболку до конца июля 15 июня 2026" [ref=f11e91] [cursor=pointer]:
+            - /url: "#news"
+            - generic [ref=f11e93]:
+              - generic [ref=f11e94]: −20% на вторую футболку до конца июля
+              - generic [ref=f11e95]: 15 июня 2026
+          - 'link "Как мы делаем макет из вашего фото: разбор 2 июня 2026" [ref=f11e96] [cursor=pointer]':
+            - /url: "#news"
+            - generic [ref=f11e98]:
+              - generic [ref=f11e99]: "Как мы делаем макет из вашего фото: разбор"
+              - generic [ref=f11e100]: 2 июня 2026
+  - contentinfo [ref=f11e101]:
+    - generic [ref=f11e102]:
+      - generic [ref=f11e103]:
+        - img "Printfee" [ref=f11e104]
+        - paragraph [ref=f11e105]: Печать футболок с твоим дизайном. Казань, доставка по всей России.
+        - generic [ref=f11e106]:
+          - link "TG" [ref=f11e107] [cursor=pointer]:
+            - /url: "#footer"
+          - link "VK" [ref=f11e108] [cursor=pointer]:
+            - /url: "#footer"
+      - generic [ref=f11e109]:
+        - generic [ref=f11e110]:
+          - generic [ref=f11e111]: Сервис
+          - link "Конструктор" [ref=f11e112] [cursor=pointer]:
+            - /url: /constructor
+          - link "Каталог" [ref=f11e113] [cursor=pointer]:
+            - /url: /catalog
+        - generic [ref=f11e114]:
+          - generic [ref=f11e115]: Компания
+          - link "О нас" [ref=f11e116] [cursor=pointer]:
+            - /url: /#footer
+          - link "Отзывы" [ref=f11e117] [cursor=pointer]:
+            - /url: /#footer
+          - link "Блог" [ref=f11e118] [cursor=pointer]:
+            - /url: /#news
+        - generic [ref=f11e119]:
+          - generic [ref=f11e120]: Поддержка
+          - button "Связаться с нами" [ref=f11e121] [cursor=pointer]
+          - link "Документация" [ref=f11e122] [cursor=pointer]:
+            - /url: /#footer
+          - link "Политика конфиденциальности" [ref=f11e123] [cursor=pointer]:
+            - /url: /#footer
+          - link "Условия обслуживания" [ref=f11e124] [cursor=pointer]:
+            - /url: /#footer

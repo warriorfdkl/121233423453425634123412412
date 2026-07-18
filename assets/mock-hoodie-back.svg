@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 596 812">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"></stop>
+      <stop offset=".55" stop-color="#F8F8F9"></stop>
+      <stop offset="1" stop-color="#EFEFF1"></stop>
+    </linearGradient>
+    <linearGradient id="sideL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000000" stop-opacity=".09"></stop>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"></stop>
+    </linearGradient>
+    <linearGradient id="sideR" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#000000" stop-opacity=".09"></stop>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"></stop>
+    </linearGradient>
+    <radialGradient id="backlight" cx=".5" cy=".4" r=".6">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".5"></stop>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"></stop>
+    </radialGradient>
+    <linearGradient id="hoodback" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"></stop>
+      <stop offset="1" stop-color="#E7E7EA"></stop>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6"></feGaussianBlur>
+    </filter>
+    <clipPath id="clip"><path d="M204,164 C208,94 250,58 298,58 C346,58 388,94 392,164 L456,182 C516,210 546,288 554,364 C560,442 562,520 558,584 C557,596 552,602 542,605 L492,616 C483,618 476,613 475,604 C470,520 470,440 472,364 C466,346 460,334 452,326 L448,650 L448,686 C400,696 196,696 148,686 L148,650 L144,326 C136,334 130,346 124,364 C126,440 126,520 121,604 C120,613 113,618 104,616 L54,605 C44,602 39,596 38,584 C34,520 36,440 42,364 C50,288 80,210 140,182 Z"></path></clipPath>
+  </defs>
+
+  <path fill="url(#body)" d="M204,164 C208,94 250,58 298,58 C346,58 388,94 392,164 L456,182 C516,210 546,288 554,364 C560,442 562,520 558,584 C557,596 552,602 542,605 L492,616 C483,618 476,613 475,604 C470,520 470,440 472,364 C466,346 460,334 452,326 L448,650 L448,686 C400,696 196,696 148,686 L148,650 L144,326 C136,334 130,346 124,364 C126,440 126,520 121,604 C120,613 113,618 104,616 L54,605 C44,602 39,596 38,584 C34,520 36,440 42,364 C50,288 80,210 140,182 Z"></path>
+
+  <g clip-path="url(#clip)">
+    <path fill="url(#sideL)" d="M144,326 L148,686 L196,680 L188,330 Z" filter="url(#soft)"></path>
+    <path fill="url(#sideR)" d="M452,326 L448,686 L400,680 L408,330 Z" filter="url(#soft)"></path>
+    <path fill="#000" opacity=".06" filter="url(#soft)" d="M124,364 C126,440 126,520 121,604 L146,608 C150,520 150,440 148,368 Z"></path>
+    <path fill="#000" opacity=".06" filter="url(#soft)" d="M472,364 C470,440 470,520 475,604 L450,608 C446,520 446,440 448,368 Z"></path>
+
+    <ellipse cx="298" cy="380" rx="170" ry="150" fill="url(#backlight)"></ellipse>
+
+    <path fill="none" stroke="#000" stroke-opacity=".09" stroke-width="3" d="M140,182 C148,240 146,292 144,326"></path>
+    <path fill="none" stroke="#000" stroke-opacity=".09" stroke-width="3" d="M456,182 C448,240 450,292 452,326"></path>
+
+    <path fill="#EAEAED" d="M121,604 C120,613 113,618 104,616 L54,605 C44,602 39,596 38,584 L40,556 L122,572 Z"></path>
+    <path fill="#EAEAED" d="M475,604 C476,613 483,618 492,616 L542,605 C552,602 557,596 558,584 L556,556 L474,572 Z"></path>
+    <g stroke="#000" stroke-opacity=".06" stroke-width="2.5">
+      <path d="M52,562 L50,600"></path><path d="M66,565 L64,604"></path><path d="M80,568 L78,607"></path><path d="M94,571 L92,610"></path><path d="M108,574 L106,612"></path>
+      <path d="M544,562 L546,600"></path><path d="M530,565 L532,604"></path><path d="M516,568 L518,607"></path><path d="M502,571 L504,610"></path><path d="M488,574 L490,612"></path>
+    </g>
+    <path fill="none" stroke="#000" stroke-opacity=".1" stroke-width="2.5" d="M40,556 L122,572"></path>
+    <path fill="none" stroke="#000" stroke-opacity=".1" stroke-width="2.5" d="M556,556 L474,572"></path>
+
+    <path fill="#EAEAED" d="M148,650 L448,650 L448,686 C400,696 196,696 148,686 Z"></path>
+    <g stroke="#000" stroke-opacity=".05" stroke-width="2.5">
+      <path d="M172,652 L172,688"></path><path d="M196,653 L196,691"></path><path d="M220,654 L220,692"></path><path d="M244,655 L244,693"></path><path d="M268,655 L268,694"></path><path d="M292,655 L292,694"></path><path d="M316,655 L316,694"></path><path d="M340,655 L340,693"></path><path d="M364,654 L364,692"></path><path d="M388,653 L388,691"></path><path d="M412,653 L412,690"></path><path d="M436,652 L436,688"></path>
+    </g>
+    <path fill="none" stroke="#000" stroke-opacity=".1" stroke-width="3" d="M148,650 L448,650"></path>
+
+    <path fill="none" stroke="#000" stroke-opacity=".04" stroke-width="9" stroke-linecap="round" filter="url(#soft)" d="M298,260 C298,380 296,510 298,630"></path>
+    <path fill="none" stroke="#000" stroke-opacity=".045" stroke-width="8" stroke-linecap="round" filter="url(#soft)" d="M212,430 C224,464 228,514 226,562"></path>
+    <path fill="none" stroke="#000" stroke-opacity=".045" stroke-width="8" stroke-linecap="round" filter="url(#soft)" d="M384,434 C374,466 370,518 372,564"></path>
+  </g>
+
+  
+  <path fill="url(#hoodback)" d="M204,164 C208,94 250,58 298,58 C346,58 388,94 392,164 C390,206 348,228 298,228 C248,228 206,206 204,164 Z"></path>
+  <path fill="none" stroke="#000" stroke-opacity=".1" stroke-width="3" d="M204,164 C206,206 248,228 298,228 C348,228 390,206 392,164"></path>
+  
+  <path fill="none" stroke="#000" stroke-opacity=".08" stroke-width="2.5" d="M298,62 C298,120 298,180 298,224"></path>
+  
+  <path fill="none" stroke="#000" stroke-opacity=".06" stroke-width="6" stroke-linecap="round" filter="url(#soft)" d="M244,110 C250,150 258,186 270,212"></path>
+  <path fill="none" stroke="#000" stroke-opacity=".06" stroke-width="6" stroke-linecap="round" filter="url(#soft)" d="M352,110 C346,150 338,186 326,212"></path>
+  
+  <path fill="#000" opacity=".07" filter="url(#soft)" d="M216,196 C248,240 348,240 380,196 C362,262 234,262 216,196 Z"></path>
+</svg>

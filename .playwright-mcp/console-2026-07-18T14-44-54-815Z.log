@@ -1,0 +1,6 @@
+[    1729ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:14335
+[   67514ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:14335
+[   86348ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:14335
+[  785454ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ :0
+[  835445ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:5181/src/pages/HomePage.tsx?t=1784386730253:0
+[  835448ms] [ERROR] [vite] Failed to reload /src/pages/HomePage.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5181/@vite/client:524

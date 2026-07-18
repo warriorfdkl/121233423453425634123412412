@@ -1,0 +1,56 @@
+[     618ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:14335
+[     860ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:14335
+[  465944ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:5181/src/pages/HomePage.tsx?t=1784385490836:0
+[  465945ms] [ERROR] [vite] Failed to reload /src/pages/HomePage.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5181/@vite/client:524
+[  470107ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:5181/src/pages/HomePage.tsx?t=1784385495009:0
+[  470108ms] [ERROR] [vite] Failed to reload /src/pages/HomePage.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5181/@vite/client:524
+[  475216ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:5181/src/pages/HomePage.tsx?t=1784385500111:0
+[  475218ms] [ERROR] [vite] Failed to reload /src/pages/HomePage.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5181/@vite/client:524
+[  479468ms] ReferenceError: Reveal is not defined
+    at HomePage (http://127.0.0.1:5181/src/pages/HomePage.tsx?t=1784385504305:210:39)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:12866:12)
+    at renderWithHooks (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:4213:19)
+    at updateFunctionComponent (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:5569:16)
+    at beginWork (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:6140:20)
+    at runWithFiberInDEV (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:851:66)
+    at performUnitOfWork (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:8429:92)
+    at workLoopSync (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:8325:37)
+    at renderRootSync (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:8309:6)
+    at performWorkOnRoot (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:7994:27)
+[  479468ms] [WARNING] %s
+
+%s
+ An error occurred in the <HomePage> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://127.0.0.1:5181/@vite/client:524
+[  484496ms] ReferenceError: Reveal is not defined
+    at HomePage (http://127.0.0.1:5181/src/pages/HomePage.tsx?t=1784385509324:210:39)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:12866:12)
+    at renderWithHooks (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:4213:19)
+    at updateFunctionComponent (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:5569:16)
+    at beginWork (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:6140:20)
+    at runWithFiberInDEV (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:851:66)
+    at performUnitOfWork (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:8429:92)
+    at workLoopSync (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:8325:37)
+    at renderRootSync (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:8309:6)
+    at performWorkOnRoot (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:7994:27)
+[  484496ms] [WARNING] %s
+
+%s
+ An error occurred in the <HomePage> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://127.0.0.1:5181/@vite/client:524
+[  488400ms] ReferenceError: Reveal is not defined
+    at HomePage (http://127.0.0.1:5181/src/pages/HomePage.tsx?t=1784385513241:210:39)
+    at Object.react_stack_bottom_frame (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:12866:12)
+    at renderWithHooks (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:4213:19)
+    at updateFunctionComponent (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:5569:16)
+    at beginWork (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:6140:20)
+    at runWithFiberInDEV (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:851:66)
+    at performUnitOfWork (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:8429:92)
+    at workLoopSync (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:8325:37)
+    at renderRootSync (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:8309:6)
+    at performWorkOnRoot (http://127.0.0.1:5181/node_modules/.vite/deps/react-dom_client.js?v=4d3c2043:7994:27)
+[  488400ms] [WARNING] %s
+
+%s
+ An error occurred in the <HomePage> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://127.0.0.1:5181/@vite/client:524

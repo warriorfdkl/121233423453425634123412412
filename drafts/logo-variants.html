@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#f0eee9;font-family:'Onest',system-ui,sans-serif}</style>
+</helmet>
+<section id="t1" style="padding:40px 44px 32px">
+  <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px">
+    <a href="#t1" style="font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none">1</a>
+    <span style="font:500 13px 'Onest',sans-serif;color:#1a1a1a">Цвет логотипа — варианты под тёмный сайт</span>
+  </div>
+  <p style="margin:0 0 20px;font:300 12px 'Onest',sans-serif;color:rgba(0,0,0,.55);max-width:640px">Форму знака не трогал — только цвет. Сайт монохромный, поэтому у логотипа два пути: полностью белый (строже всего, как у DWF) или белый текст + один цветной акцент на знаке, который станет единственным цветом всего сайта (кнопки, волна, ссылки).</p>
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+    <sc-for list="{{ options }}" as="o" hint-placeholder-count="6">
+      <div id="{{ o.id }}" style="flex:none;display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <a href="{{ o.href }}" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none">{{ o.id }}</a>
+          <span style="font:400 11px 'Onest',sans-serif;color:rgba(0,0,0,.55)">{{ o.label }}</span>
+        </div>
+        <div style="width:340px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,.08);box-shadow:0 1px 3px rgba(0,0,0,.06)">
+          <div style="background:{{ o.bg }};padding:0">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid {{ o.line }}">
+              <img src="{{ o.src }}" style="height:14px;display:block">
+              <div style="display:flex;gap:10px">
+                <div style="width:26px;height:4px;border-radius:2px;background:{{ o.dim }}"></div>
+                <div style="width:26px;height:4px;border-radius:2px;background:{{ o.dim }}"></div>
+              </div>
+            </div>
+            <div style="padding:34px 18px 30px;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
+              <img src="{{ o.src }}" style="height:34px;display:block">
+              <div style="display:flex;gap:8px;align-items:center">
+                <div style="height:30px;padding:0 16px;border-radius:99px;background:{{ o.btnBg }};color:{{ o.btnFg }};display:flex;align-items:center;font:500 11px 'Onest',sans-serif">Создать футболку</div>
+                <div style="height:30px;padding:0 16px;border-radius:99px;border:1px solid {{ o.dim }};color:{{ o.fg }};display:flex;align-items:center;font:400 11px 'Onest',sans-serif">Каталог</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font:300 10.5px 'Onest',sans-serif;color:rgba(0,0,0,.45);max-width:340px;line-height:1.5">{{ o.note }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <p style="margin:22px 0 0;font:300 12px 'Onest',sans-serif;color:rgba(0,0,0,.5)">Скажите номер (например «1b») — применю к сайту: логотип, кнопки и цвет волны.</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = '#0B0B0C', fg = '#EDEDEE', dim = 'rgba(237,237,238,.25)', line = 'rgba(255,255,255,.08)';
+    const mk = (id, label, src, accent, note, btnAccent) => ({
+      id, label, src: 'assets/' + src + '.svg', href: '#' + id,
+      bg: dark, fg, dim, line,
+      btnBg: btnAccent ? accent : fg,
+      btnFg: btnAccent ? '#0B0B0C' : dark,
+      note
+    });
+    return {
+      options: [
+        mk('1a', 'Полностью белый — моно', 'logo-mono-white', null, 'Самый строгий, ближе всего к DWF. Цвета на сайте нет вообще, акценты — белые кнопки.'),
+        mk('1b', 'Белый + лайм', 'logo-white-lime', '#D4FF3F', 'Неоновый лайм на знаке. Дерзко, молодёжно, отлично светится на чёрном.', true),
+        mk('1c', 'Белый + медь', 'logo-white-copper', '#C08A5A', 'Медный акцент — точь-в-точь настроение волны DWF. Тёплый и дорогой.', true),
+        mk('1d', 'Белый + коралл', 'logo-white-coral', '#FF5C38', 'Горячий красно-оранжевый. Энергия и «печать/огонь», хорошо для молодой аудитории.', true),
+        mk('1e', 'Весь лайм', 'logo-lime-lime', '#D4FF3F', 'Целиком неоновый логотип — смело, как у стритвир-брендов. Кнопки тоже лайм.', true),
+        mk('1f', 'Текущий фиолетовый — для сравнения', 'logo-white-violet', '#766BE9', 'Тот же знак, но фиолетовый оставлен только на иконке, текст белый.', true)
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

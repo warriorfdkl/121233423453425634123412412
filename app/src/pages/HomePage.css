@@ -1,0 +1,855 @@
+/* содержит волну (.hero__wave, inset: 0). На десктопе коробка совпадает с
+   героем — .pf-morph там скрыт, — поэтому вид не меняется. */
+.hero-screen {
+  position: relative;
+}
+
+.hero {
+  position: relative;
+  min-height: 620px;
+  padding: clamp(96px, 14vw, 160px) 0 96px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.hero__wave {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* края волны уходят в фон, а не обрубаются границей канвы: сверху линии
+     проявляются от горизонта, снизу и по бокам гаснут. Две маски пересекаются
+     (mask-composite), поэтому углы гаснут по обеим осям сразу. */
+  mask-image: linear-gradient(180deg, transparent 0%, #000 34%, #000 82%, transparent 100%),
+    linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 34%, #000 82%, transparent 100%),
+    linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-composite: source-in;
+}
+.hero__photo {
+  position: absolute;
+  top: 50%;
+  right: clamp(40px, 9vw, 160px);
+  width: min(39vw, 510px);
+  /* the source photo itself is shot/printed at a ~31deg tilt — rotated back
+     level here rather than re-exporting the asset */
+  transform: translateY(-50%) rotate(31deg);
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+  animation: hero-photo-float 7s ease-in-out infinite;
+}
+@keyframes hero-photo-float {
+  0%,
+  100% {
+    transform: translateY(-50%) rotate(29.5deg);
+  }
+  50% {
+    transform: translateY(calc(-50% - 12px)) rotate(32.5deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__photo {
+    animation: none;
+  }
+}
+@media (max-width: 760px) {
+  .hero__photo {
+    display: none;
+  }
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 3vw, 48px);
+}
+.hero__title {
+  margin: 0 0 40px;
+  font-weight: 600;
+  font-size: clamp(44px, 7.2vw, 116px);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  max-width: 13ch;
+}
+.hero__title span {
+  display: block;
+}
+.hero__title span.hero__title-stroke {
+  -webkit-text-stroke: 1.5px var(--pf-accent);
+  color: transparent;
+}
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  padding: 0 32px;
+  border-radius: 99px;
+  background: var(--pf-accent);
+  color: #0b0b0c;
+  font-weight: 600;
+  font-size: 16.5px;
+  text-decoration: none;
+}
+
+/* shrinking .hero's own height shrinks the wave with it, since
+   useWaveCanvas reads the element's rendered height for its line amplitude */
+@media (max-width: 760px) {
+  .hero {
+    /* the fixed 420px floor left a large empty band below the button —
+       the title+button content is only ~323px tall with this padding, so
+       let the hero hug its content instead of forcing extra height */
+    min-height: 0;
+    padding: 88px 0 48px;
+  }
+  .hero__wave {
+    /* Линии идут от заголовка, проходят за футболкой и гаснут ровно там, где
+       начинается текстовый блок (.hero-brief стартует на ~51% высоты
+       .hero-screen). Раньше маска держала волну до 70% — линии шли прямо
+       под описанием и цифрами, и текст об них рябил. */
+    mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 44%, transparent 53%),
+      linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 44%, transparent 53%),
+      linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  }
+}
+
+.section {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 3vw, 48px);
+}
+.services-section {
+  padding-bottom: clamp(56px, 12vw, 140px);
+}
+
+.hero-intro {
+  padding: clamp(64px, 14vw, 140px) clamp(20px, 3vw, 48px) clamp(56px, 10vw, 120px);
+}
+@media (max-width: 760px) {
+  .hero-intro {
+    /* the vw-scaled clamp floors at 64px/56px on narrow phones — well past
+       the hero's own bottom padding, reading as a big empty gap above the
+       heading */
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .two-col {
+    grid-template-columns: 1fr;
+    /* the 80px column gap becomes a vertical gap once stacked to one
+       column — way too much space between the heading and its paragraph */
+    gap: 20px;
+  }
+}
+
+.intro__title {
+  font-weight: 500;
+  font-size: clamp(36px, 3.7vw, 58px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.intro__text {
+  font-size: 20px;
+  line-height: 1.65;
+  font-weight: 300;
+  color: var(--pf-text-dim-65);
+  padding-top: 8px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 760px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.service-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 36px;
+  border-radius: 22px;
+  text-decoration: none;
+}
+.service-tile__desc {
+  font-size: 16.5px;
+  line-height: 1.55;
+  font-weight: 300;
+  max-width: 30ch;
+}
+.service-tile__foot {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.service-tile__num {
+  font-size: 13.5px;
+  opacity: 0.6;
+}
+.service-tile__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.service-tile__title {
+  font-weight: 500;
+  font-size: 29px;
+  letter-spacing: -0.01em;
+}
+.service-tile__arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  padding: clamp(40px, 8vw, 80px) 0 clamp(48px, 10vw, 120px);
+}
+.stats-row .divider {
+  width: clamp(24px, 3vw, 64px);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.stat {
+  flex: 1;
+}
+.stat--center {
+  text-align: center;
+}
+.stat--right {
+  text-align: right;
+}
+.stat__value {
+  font-weight: 600;
+  font-size: clamp(38px, 4.6vw, 64px);
+  letter-spacing: -0.02em;
+}
+.stat__value--accent {
+  color: var(--pf-accent);
+}
+.stat__label {
+  font-size: 16px;
+  color: var(--pf-text-dim-5);
+  margin-top: 10px;
+}
+
+.news-block {
+  border-top: 1px solid var(--pf-border);
+  padding-top: 64px;
+}
+.news-head {
+  max-width: 800px;
+  margin-bottom: 56px;
+}
+.news-kicker {
+  font: 600 11px var(--pf-font-mono);
+  letter-spacing: 0.2em;
+  color: var(--pf-text-dim-4);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.news-title {
+  font-weight: 500;
+  font-size: clamp(32px, 3.2vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* scroll-driven "card fan" reveal, ported from the static prototype:
+   a tall runway (.pf-news-wrap) gives scroll distance for the sticky zone
+   to stay pinned while useScrollFan's thresholds flip each card in */
+.pf-news-wrap {
+  position: relative;
+  height: 1900px;
+  margin-bottom: 120px;
+}
+.pf-news-sticky {
+  position: sticky;
+  top: 120px;
+  height: 620px;
+  overflow: visible;
+}
+.pf-news-card {
+  position: absolute;
+  width: 44%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 26px;
+  border-radius: 20px;
+  background: var(--pf-bg-raised);
+  border: 1px solid var(--pf-border);
+  text-decoration: none;
+  color: var(--pf-text);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.pf-news-card__thumb {
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  background: repeating-linear-gradient(45deg, #1a1a1e 0 12px, #1f1f24 12px 24px);
+}
+.pf-news-card__title {
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.pf-news-card__date {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--pf-text-dim-65);
+}
+
+/* ==========================================================================
+   Mobile home screen — "brutal-tech" treatment (kirarock.team-derived):
+   heavy condensed caps, monospace body/meta, chamfered corners instead of
+   rounding, one coral accent. Desktop above 780px is untouched; everything
+   below only overrides inside these queries, and blocks that exist for
+   mobile alone (.pf-marquee, .sec-kicker, .pf-endcta) carry .pf-mob.
+   The hero is deliberately left alone in both themes.
+   ========================================================================== */
+.pf-mob {
+  display: none;
+}
+
+@media (max-width: 780px) {
+  .pf-mob {
+    display: block;
+  }
+
+  /* clip-path cuts the border along with the box, so chamfered elements are
+     background-filled rather than outlined (see README on .cham-outline if a
+     stroked variant is ever needed) */
+  .service-tile,
+  .pf-news-card,
+  .pf-endcta {
+    border: none;
+    border-radius: 0;
+    clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+  }
+
+  /* --- заголовок и кнопка в том же языке, что и остальной мобильный экран:
+     тяжёлый гротеск капсом вместо Onest, срезанный угол вместо пилюли --- */
+  .hero__title {
+    margin: 0 0 18px;
+    font-family: var(--pf-font-display);
+    font-weight: 700;
+    /* по ширине самой длинной строки: на 14vw «ТВОИ ПРАВИЛА.» разваливалось
+       на две строки, а тире улетало на свою */
+    font-size: clamp(38px, 11.5vw, 56px);
+    line-height: 0.94;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    max-width: none;
+  }
+  .hero__title span.hero__title-stroke {
+    /* на капсовом Oswald волосяная обводка теряется — 2px держит вес строки */
+    -webkit-text-stroke-width: 2px;
+  }
+  .hero__cta {
+    height: 54px;
+    padding: 0 26px;
+    border-radius: 0;
+    clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+    font: 500 13px var(--pf-font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    gap: 14px;
+  }
+  .hero__cta::after {
+    content: '→';
+    font-size: 15px;
+  }
+
+  /* --- первый экран: герой + футболка, ровно в высоту окна ---------------
+     100svh (не vh) — это высота с раскрытой панелью браузера, то есть
+     гарантия, что следующая секция не подглядывает снизу ни в каком
+     состоянии адресной строки; минус высота шапки, которая стоит над этим
+     блоком в потоке. */
+  /* Первый экран больше не подгоняется под высоту окна: после заголовка и
+     футболки идут описание, цифры и кнопка, и это сознательно длиннее одного
+     экрана — низ блока виден краем и зовёт листать. Прежняя жёсткая
+     `height: calc(100svh - 64px)` теперь только срезала бы контент. */
+  .hero-screen {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero {
+    flex: none;
+    padding: 40px 0 8px;
+  }
+  /* на мобильном действие переехало под цифры (.hero-brief__cta) */
+  .hero__cta {
+    display: none;
+  }
+
+  /* --- "фото → футболка" под кнопкой -------------------------------------
+     Петля на CSS вместо гифки: те же картинки, что лежат в assets, ноль
+     лишних килобайт против 5-8 МБ гифа. Мемы крутятся по очереди — каждый
+     сдвинут на свою треть цикла через animationDelay в HomePage.tsx.
+     Если появится снятое видео процесса — меняется на <video>. */
+  .pf-morph {
+    display: grid;
+    place-items: center;
+    /* сверху — коридор для мема в полёте: он стартует выше ворота
+       (yPercent -118 в useMorphLoop) и без этого запаса налезал на заголовок */
+    padding: 40px 0 2px;
+    position: relative;
+  }
+  /* подсветка за футболкой, чтобы белая майка стояла в пятне света, а не на
+     линиях волны. Отдельным слоем, а не фоном самого .pf-morph, чтобы маска
+     растворяла кромки и не трогала саму футболку.
+     Технической сетки тут больше нет: волна теперь идёт через весь экран и
+     сама даёт фактуру, сетка поверх неё только мусорила. */
+  .pf-morph::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(104% 60% at 50% 44%, rgba(255, 92, 56, 0.24) 0%, rgba(255, 92, 56, 0.07) 44%, transparent 74%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 72%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 72%, transparent 100%);
+  }
+  .pf-morph__stage {
+    /* над фоновым слоем */
+    z-index: 1;
+  }
+  .pf-morph__stage {
+    position: relative;
+    /* квадрат по картинке футболки (360×360). Высота теперь задаётся только
+       шириной экрана: остаток вертикали больше не считаем — первому экрану
+       разрешено быть длиннее окна. */
+    /* и от ширины, и от высоты окна: на низких экранах футболка ужимается,
+       чтобы кнопка осталась в пределах первого экрана */
+    width: min(62vw, 236px, 26svh);
+    aspect-ratio: 1;
+    /* multiply у принта не должен цепляться за фон страницы */
+    isolation: isolate;
+  }
+  .pf-morph__tee {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.5));
+  }
+  .pf-morph__print {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 38%;
+    transform-origin: 50% 40%;
+    /* состояние покоя = кадр «принт лёг на футболку». Его и видно, если
+       анимация выключена (prefers-reduced-motion) или JS ещё не отработал;
+       дальше расписание перехватывает useMorphLoop.
+       Белый фон мема гаснет об ткань и читается как краска, а не как
+       наклеенное фото — в полёте таймлайн переключает наложение обратно */
+    transform: translate(-50%, 0);
+    mix-blend-mode: multiply;
+    opacity: 0;
+  }
+  /* первый ребёнок .pf-morph__stage — сама майка, поэтому первый принт второй */
+  .pf-morph__print:nth-child(2) {
+    opacity: 1;
+  }
+
+  /* --- низ первого экрана: описание → цифры → действие ------------------- */
+  .pf-mob-hide {
+    display: none;
+  }
+
+  .hero-brief {
+    padding: 4px clamp(20px, 3vw, 48px) 28px;
+  }
+  .hero-brief__lede {
+    font-family: var(--pf-font-mono);
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--pf-text);
+    margin-bottom: 16px;
+    /* колонка не должна разъезжаться на планшетных ширинах */
+    max-width: 46ch;
+  }
+  .hero-brief__stats {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  .hero-brief__stat {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 9px 0;
+    border-top: 1px solid var(--pf-border);
+  }
+  .hero-brief__stat:last-child {
+    border-bottom: 1px solid var(--pf-border);
+  }
+  .hero-brief__value {
+    flex: none;
+    /* фиксированная колонка, чтобы подписи начинались по одной линии.
+       10ch — по самой длинной строке («50+ стирок»), иначе она переносится */
+    width: 10ch;
+    font-family: var(--pf-font-display);
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .hero-brief__value--accent {
+    color: var(--pf-accent);
+  }
+  .hero-brief__label {
+    font-family: var(--pf-font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--pf-text-dim-6);
+  }
+  .hero-brief__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* во всю ширину: на телефоне это самая уверенная форма действия */
+    width: 100%;
+    height: 54px;
+    background: var(--pf-accent);
+    color: #0b0b0c;
+    text-decoration: none;
+    font: 500 13px var(--pf-font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+  }
+
+  /* --- section label: 01 / О сервисе ──────────── --- */
+  .sec-kicker,
+  .news-kicker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 500 11px var(--pf-font-mono);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    /* 0.4 давало 3.4:1 при норме AA 4.5:1 */
+    color: var(--pf-text-dim-6);
+    margin-bottom: 16px;
+  }
+  .sec-kicker span,
+  .news-kicker span {
+    color: var(--pf-accent);
+  }
+  .sec-kicker::after,
+  .news-kicker::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--pf-border);
+  }
+
+  /* --- intro --- */
+  .intro__title {
+    font-family: var(--pf-font-display);
+    font-weight: 700;
+    font-size: clamp(34px, 9.6vw, 46px);
+    line-height: 0.98;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+  .intro__text {
+    font-family: var(--pf-font-mono);
+    font-size: 13.5px;
+    line-height: 1.7;
+    font-weight: 400;
+    padding-top: 0;
+  }
+
+  /* --- service tiles --- */
+  .services-section {
+    padding-bottom: 44px;
+  }
+  .services-grid {
+    gap: 12px;
+  }
+  .service-tile {
+    gap: 34px;
+    padding: 22px;
+  }
+  .service-tile__desc {
+    font-family: var(--pf-font-mono);
+    font-size: 13px;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+  .service-tile__num {
+    font: 500 11px var(--pf-font-mono);
+    letter-spacing: 0.18em;
+    opacity: 0.5;
+  }
+  .service-tile__title {
+    font-family: var(--pf-font-display);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+  .service-tile__arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* --- stats: three hairline rows, value left / label right --- */
+  .stats-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 4px 0 40px;
+  }
+  .stats-row .divider {
+    display: none;
+  }
+  .stat {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 0;
+    border-top: 1px solid var(--pf-border-strong);
+    text-align: left;
+  }
+  .stat:last-child {
+    border-bottom: 1px solid var(--pf-border-strong);
+  }
+  .stat__value {
+    font-family: var(--pf-font-display);
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    flex: none;
+  }
+  .stat__label {
+    font-family: var(--pf-font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--pf-text-dim-5);
+    margin-top: 0;
+    text-align: right;
+    max-width: 21ch;
+  }
+
+  /* --- news --- */
+  .news-block {
+    padding-top: 40px;
+  }
+  .news-head {
+    margin-bottom: 22px;
+  }
+  .news-title {
+    font-family: var(--pf-font-display);
+    font-weight: 700;
+    font-size: clamp(30px, 8.4vw, 40px);
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+  .pf-news-card__title {
+    font-family: var(--pf-font-display);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.05;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+  .pf-news-card__date {
+    font-family: var(--pf-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--pf-text-dim-6);
+  }
+
+  /* --- липкая панель заказа ---------------------------------------------
+     Единственное действие страницы жило только в герое: человек дочитывал
+     до низа прогретым, и нажать было нечего. Панель ещё и переносит действие
+     в зону большого пальца. */
+  .pf-stickycta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* шапка — 30, панель обязана быть над ней при пересечении */
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: var(--pf-bg);
+    border-top: 1px solid var(--pf-border-strong);
+    text-decoration: none;
+    color: var(--pf-text);
+    transform: translateY(110%);
+    transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .pf-stickycta--in {
+    transform: none;
+  }
+  .pf-stickycta__price {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font: 400 10.5px var(--pf-font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pf-text-dim-6);
+  }
+  .pf-stickycta__price b {
+    font-family: var(--pf-font-display);
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0;
+    color: var(--pf-text);
+  }
+  .pf-stickycta__btn {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    /* 44px — минимальная тач-цель */
+    height: 44px;
+    padding: 0 18px;
+    background: var(--pf-accent);
+    color: #0b0b0c;
+    font: 500 12px var(--pf-font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
+  /* Панель перекрывает низ подвала. Через :has, а не просто `.pf-footer`:
+     этот файл попадает в общий бандл, а подвал общий для всех страниц —
+     безусловное правило добавило бы пустые 96px в каталоге и корзине,
+     где никакой панели нет. */
+  body:has(.pf-stickycta--in) .pf-footer {
+    padding-bottom: 96px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pf-stickycta {
+      transition: none;
+    }
+  }
+  .pf-news-card__thumb {
+    border-radius: 0;
+  }
+}
+
+/* --- scroll reveal -------------------------------------------------------
+   Blocks fade/slide up as they enter the viewport. Native scroll-driven
+   animation (`animation-timeline: view()`) rather than an IntersectionObserver:
+   no JS, and it can't leave content stuck invisible when the viewport jumps
+   past an element without crossing it (e.g. following the header's /#news
+   anchor), which is exactly how an observer-based reveal fails.
+
+   `.reveal` animates the block itself; `.reveal-stagger` leaves the container
+   in place and walks its direct children in one after another (staggered by
+   shifting each child's animation-range, since a scroll timeline has no
+   delay). Wrapped in @supports so browsers without scroll timelines (Firefox
+   as of now) simply render everything visible and unanimated. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal,
+    .reveal-stagger > * {
+      animation: pf-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+    .reveal-stagger > *:nth-child(2) {
+      animation-range: entry 0% cover 28%;
+    }
+    .reveal-stagger > *:nth-child(3) {
+      animation-range: entry 0% cover 34%;
+    }
+    .reveal-stagger > *:nth-child(4) {
+      animation-range: entry 0% cover 40%;
+    }
+    .reveal-stagger > *:nth-child(5) {
+      animation-range: entry 0% cover 46%;
+    }
+  }
+}
+
+/* Двигает, но не прячет. Раньше здесь была ещё и opacity 0 → 1, и это
+   означало, что видимость контента решает анимация: при высоте окна больше
+   содержимого (планшет в альбомной, превью в мессенджере, печать в PDF,
+   headless-рендер) секции оказывались внутри вьюпорта на нулевой прокрутке,
+   их диапазон не начинался, и половина страницы рендерилась пустой.
+   Худший случай теперь — контент виден, но без сдвига. */
+@keyframes pf-reveal {
+  from {
+    transform: translateY(26px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* the desktop fan needs real horizontal room; on a phone the same three
+   cards become a swipeable snap carousel instead — the earlier stacked
+   variant relied on useInView to fade each card in, which left a tall band
+   of invisible cards whenever the reveal didn't fire */
+@media (max-width: 900px) {
+  .pf-news-wrap {
+    height: auto !important;
+    margin: 0 calc(-1 * clamp(20px, 3vw, 48px)) 0;
+  }
+  .pf-news-sticky {
+    position: static !important;
+    height: auto !important;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 2px clamp(20px, 3vw, 48px) 18px;
+    scrollbar-width: none;
+  }
+  .pf-news-sticky::-webkit-scrollbar {
+    display: none;
+  }
+  .pf-news-card {
+    position: static !important;
+    flex: 0 0 76%;
+    width: 76% !important;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none;
+    padding: 16px;
+    gap: 14px;
+  }
+}

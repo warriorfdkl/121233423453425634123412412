@@ -3,6 +3,21 @@
  * Replaces 122 hardcoded #FF5C38 literals and 7 ad-hoc breakpoint values
  * that had accumulated across the static prototype.
  */
+/*
+ * Метрический фолбэк для Oswald. Он узкий, а системный запасной — нормальной
+ * ширины: пока шрифт едет, заголовок первого экрана рисуется шире, «ТВОИ
+ * ПРАВИЛА.» уходит в две строки, потом схлопывается. size-adjust ужимает
+ * запасной до ширины Oswald, и прыжка на H1 не видно.
+ */
+@font-face {
+  font-family: 'Oswald Fallback';
+  src: local('Arial Narrow'), local('Arial');
+  size-adjust: 82%;
+  ascent-override: 116%;
+  descent-override: 29%;
+  line-gap-override: 0%;
+}
+
 :root {
   --pf-bg: #0b0b0c;
   --pf-bg-raised: #141416;
@@ -25,6 +40,16 @@
 
   --pf-success: #8fe29a;
 
+  /*
+   * Типографическая шкала, отношение ~1.25. В rem, а не в px: px игнорирует
+   * размер шрифта, выставленный пользователем в браузере, а в PRODUCT.md
+   * заявлен WCAG AA целиком. Имена по роли, не по значению.
+   */
+  --text-label: 0.75rem; /* 12px — микро-лейблы, кикеры, даты */
+  --text-sm: 0.875rem; /* 14px — вторичный текст */
+  --text-body: 1rem; /* 16px — основной текст, минимум читаемости */
+  --text-lead: 1.125rem; /* 18px — вводный абзац */
+
   --pf-radius-sm: 9px;
   --pf-radius-md: 16px;
   --pf-radius-lg: 22px;
@@ -35,7 +60,7 @@
   /* heavy condensed display face for the mobile brutal-tech screens
      (Oswald = closest Druk-alike that actually ships Cyrillic — Anton and
      Bebas Neue look nearer but fall back on Russian text) */
-  --pf-font-display: 'Oswald', 'Onest', system-ui, sans-serif;
+  --pf-font-display: 'Oswald', 'Oswald Fallback', 'Onest', system-ui, sans-serif;
 
   /*
    * Single documented breakpoint scale. CSS custom properties cannot be

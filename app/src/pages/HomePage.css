@@ -160,12 +160,18 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
+/* Начертание 400, а не 300. Светлый текст на тёмном фоне выглядит тоньше,
+   чем есть, и требует компенсации сразу по трём осям: интерлиньяж, трекинг и
+   вес. Light-начертание на почти-чёрном — ровно то, из-за чего текст читается
+   серым и рябит; поверх этого ещё и -webkit-font-smoothing: antialiased. */
 .intro__text {
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.65;
-  font-weight: 300;
-  color: var(--pf-text-dim-65);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--pf-text-dim-75);
   padding-top: 8px;
+  text-wrap: pretty;
 }
 
 .services-grid {
@@ -188,10 +194,12 @@
   text-decoration: none;
 }
 .service-tile__desc {
-  font-size: 16.5px;
+  font-size: 1.0625rem;
   line-height: 1.55;
-  font-weight: 300;
-  max-width: 30ch;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  max-width: 34ch;
+  text-wrap: pretty;
 }
 .service-tile__foot {
   display: flex;
@@ -265,9 +273,11 @@
   margin-bottom: 56px;
 }
 .news-kicker {
-  font: 600 11px var(--pf-font-mono);
-  letter-spacing: 0.2em;
-  color: var(--pf-text-dim-4);
+  font: 600 var(--text-label) var(--pf-font-mono);
+  letter-spacing: 0.14em;
+  /* dim-4 давало 3.4:1 — правка контраста раньше дошла только до мобильного
+     блока, десктоп оставался ниже нормы AA */
+  color: var(--pf-text-dim-6);
   text-transform: uppercase;
   margin-bottom: 18px;
 }
@@ -320,8 +330,8 @@
   margin-bottom: 10px;
 }
 .pf-news-card__date {
-  font-size: 14px;
-  font-weight: 300;
+  font-size: var(--text-sm);
+  font-weight: 400;
   color: var(--pf-text-dim-65);
 }
 
@@ -361,8 +371,11 @@
     font-weight: 700;
     /* по ширине самой длинной строки: на 14vw «ТВОИ ПРАВИЛА.» разваливалось
        на две строки, а тире улетало на свою */
-    font-size: clamp(38px, 11.5vw, 56px);
-    line-height: 0.94;
+    font-size: clamp(2.375rem, 11.5vw, 3.5rem);
+    /* не ниже 1.02: в капсовой кириллице есть надстрочные — бревис у Й,
+       умляут у Ё («ТВОЙ ПРИНТ»). На латинском референсе этой проблемы нет,
+       поэтому приём и приехал с 0.94, подрезающим знаки */
+    line-height: 1.02;
     letter-spacing: 0;
     text-transform: uppercase;
     max-width: none;
@@ -371,26 +384,6 @@
     /* на капсовом Oswald волосяная обводка теряется — 2px держит вес строки */
     -webkit-text-stroke-width: 2px;
   }
-  .hero__cta {
-    height: 54px;
-    padding: 0 26px;
-    border-radius: 0;
-    clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
-    font: 500 13px var(--pf-font-mono);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    gap: 14px;
-  }
-  .hero__cta::after {
-    content: '→';
-    font-size: 15px;
-  }
-
-  /* --- первый экран: герой + футболка, ровно в высоту окна ---------------
-     100svh (не vh) — это высота с раскрытой панелью браузера, то есть
-     гарантия, что следующая секция не подглядывает снизу ни в каком
-     состоянии адресной строки; минус высота шапки, которая стоит над этим
-     блоком в потоке. */
   /* Первый экран больше не подгоняется под высоту окна: после заголовка и
      футболки идут описание, цифры и кнопка, и это сознательно длиннее одного
      экрана — низ блока виден краем и зовёт листать. Прежняя жёсткая
@@ -485,14 +478,25 @@
   .hero-brief {
     padding: 4px clamp(20px, 3vw, 48px) 28px;
   }
+  /* Проза набрана Onest, а не моноширинным. Причина не вкусовая: основной
+     текст обязан быть от 16px, а моно на этом кегле даёт ~36 символов в
+     строке при комфортных 45-75 — колонка становится слишком узкой. Onest на
+     тех же 16px даёт ~44. Заодно уходит расхождение с характером бренда:
+     моно на весь текст читается как накладная, а не как разговор про подарок
+     (см. PRODUCT.md). Моно остаётся у лейблов, цифр и кнопок — там он
+     осмысленный приём, а не шрифт по умолчанию.
+     letter-spacing и вес — компенсация светлого текста на тёмном фоне: он
+     выглядит тоньше, чем есть, и требует правки по трём осям сразу
+     (интерлиньяж, трекинг, начертание). */
   .hero-brief__lede {
-    font-family: var(--pf-font-mono);
-    font-size: 13px;
-    line-height: 1.65;
+    font-size: var(--text-body);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
     color: var(--pf-text);
-    margin-bottom: 16px;
+    margin-bottom: 18px;
+    text-wrap: pretty;
     /* колонка не должна разъезжаться на планшетных ширинах */
-    max-width: 46ch;
+    max-width: 62ch;
   }
   .hero-brief__stats {
     display: flex;
@@ -516,8 +520,11 @@
     width: 10ch;
     font-family: var(--pf-font-display);
     font-weight: 700;
-    font-size: 23px;
-    line-height: 1;
+    font-size: 1.4375rem;
+    line-height: 1.05;
+    /* на плакатном кегле трекинг 0 держится сам, но на 19-23px узкий капс
+       слипается — «50+ СТИРОК» первым делом */
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -526,9 +533,10 @@
   }
   .hero-brief__label {
     font-family: var(--pf-font-mono);
-    font-size: 11px;
-    line-height: 1.5;
+    font-size: var(--text-label);
+    line-height: 1.45;
     color: var(--pf-text-dim-6);
+    text-wrap: pretty;
   }
   .hero-brief__cta {
     display: flex;
@@ -540,7 +548,7 @@
     background: var(--pf-accent);
     color: #0b0b0c;
     text-decoration: none;
-    font: 500 13px var(--pf-font-mono);
+    font: 500 var(--text-sm) var(--pf-font-mono);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
@@ -552,8 +560,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font: 500 11px var(--pf-font-mono);
-    letter-spacing: 0.18em;
+    font: 500 var(--text-label) var(--pf-font-mono);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     /* 0.4 давало 3.4:1 при норме AA 4.5:1 */
     color: var(--pf-text-dim-6);
@@ -575,17 +583,21 @@
   .intro__title {
     font-family: var(--pf-font-display);
     font-weight: 700;
-    font-size: clamp(34px, 9.6vw, 46px);
-    line-height: 0.98;
+    font-size: clamp(2.125rem, 9.6vw, 2.875rem);
+    /* «КИДАЙ ФОТО…» переносится, а Й на 0.98 упирался в строку выше */
+    line-height: 1.06;
     letter-spacing: 0;
     text-transform: uppercase;
+    text-wrap: balance;
   }
   .intro__text {
-    font-family: var(--pf-font-mono);
-    font-size: 13.5px;
-    line-height: 1.7;
+    font-size: var(--text-body);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
     font-weight: 400;
+    color: var(--pf-text-dim-75);
     padding-top: 0;
+    text-wrap: pretty;
   }
 
   /* --- service tiles --- */
@@ -600,23 +612,32 @@
     padding: 22px;
   }
   .service-tile__desc {
-    font-family: var(--pf-font-mono);
-    font-size: 13px;
-    line-height: 1.65;
+    font-size: var(--text-body);
+    line-height: 1.55;
+    letter-spacing: 0.01em;
     font-weight: 400;
+    text-wrap: pretty;
+    /* базовые 30ch внутри плитки шириной ~331px резали строку вдвое ниже
+       комфортной — на мобильном ограничение снимаем */
+    max-width: none;
   }
   .service-tile__num {
-    font: 500 11px var(--pf-font-mono);
-    letter-spacing: 0.18em;
-    opacity: 0.5;
+    font: 500 var(--text-label) var(--pf-font-mono);
+    letter-spacing: 0.14em;
+    /* было opacity .5 — на коралловой плитке это давало 2.8:1, вдвое ниже
+       нормы AA. Номер и так отделён кеглем, моно-начертанием и трекингом,
+       глушить его прозрачностью не нужно */
+    opacity: 0.78;
   }
   .service-tile__title {
     font-family: var(--pf-font-display);
     font-weight: 700;
-    font-size: 30px;
-    line-height: 1;
+    font-size: 1.875rem;
+    /* «СОБЕРЁМ ЗА ТЕБЯ» — Ё с умляутом, на 1.0 подрезался */
+    line-height: 1.06;
     letter-spacing: 0;
     text-transform: uppercase;
+    text-wrap: balance;
   }
   .service-tile__arrow {
     width: 38px;
@@ -624,45 +645,8 @@
   }
 
   /* --- stats: three hairline rows, value left / label right --- */
-  .stats-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 4px 0 40px;
-  }
-  .stats-row .divider {
-    display: none;
-  }
-  .stat {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 18px 0;
-    border-top: 1px solid var(--pf-border-strong);
-    text-align: left;
-  }
-  .stat:last-child {
-    border-bottom: 1px solid var(--pf-border-strong);
-  }
-  .stat__value {
-    font-family: var(--pf-font-display);
-    font-weight: 700;
-    font-size: 34px;
-    line-height: 1;
-    letter-spacing: 0;
-    text-transform: uppercase;
-    flex: none;
-  }
-  .stat__label {
-    font-family: var(--pf-font-mono);
-    font-size: 11px;
-    line-height: 1.5;
-    color: var(--pf-text-dim-5);
-    margin-top: 0;
-    text-align: right;
-    max-width: 21ch;
-  }
+  /* мобильных переопределений .stat* здесь больше нет: секция статистики
+     скрыта через .pf-mob-hide, её роль на телефоне играет .hero-brief */
 
   /* --- news --- */
   .news-block {
@@ -674,22 +658,26 @@
   .news-title {
     font-family: var(--pf-font-display);
     font-weight: 700;
-    font-size: clamp(30px, 8.4vw, 40px);
-    line-height: 1;
+    font-size: clamp(1.875rem, 8.4vw, 2.5rem);
+    line-height: 1.06;
     letter-spacing: 0;
     text-transform: uppercase;
+    text-wrap: balance;
   }
   .pf-news-card__title {
     font-family: var(--pf-font-display);
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 1.05;
-    letter-spacing: 0;
+    /* было 600 — единственное отступление от 700 у дисплейного шрифта,
+       без причины */
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
+    text-wrap: balance;
   }
   .pf-news-card__date {
     font-family: var(--pf-font-mono);
-    font-size: 11px;
+    font-size: var(--text-label);
     letter-spacing: 0.08em;
     color: var(--pf-text-dim-6);
   }
@@ -724,7 +712,7 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
-    font: 400 10.5px var(--pf-font-mono);
+    font: 400 var(--text-label) var(--pf-font-mono);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--pf-text-dim-6);
@@ -732,8 +720,8 @@
   .pf-stickycta__price b {
     font-family: var(--pf-font-display);
     font-weight: 700;
-    font-size: 19px;
-    letter-spacing: 0;
+    font-size: 1.1875rem;
+    letter-spacing: 0.02em;
     color: var(--pf-text);
   }
   .pf-stickycta__btn {
@@ -745,8 +733,8 @@
     padding: 0 18px;
     background: var(--pf-accent);
     color: #0b0b0c;
-    font: 500 12px var(--pf-font-mono);
-    letter-spacing: 0.08em;
+    font: 500 var(--text-label) var(--pf-font-mono);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
   }

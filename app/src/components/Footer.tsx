@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SupportChat } from './SupportChat';
+import { asset } from '../lib/asset';
 
 const columns: { title: string; links: { label: string; to?: string; action?: 'chat' }[] }[] = [
   {
@@ -38,7 +39,7 @@ export function Footer() {
     <footer id="footer" className="pf-footer">
       <div className="pf-footer__grid">
         <div className="pf-footer__brand">
-          <img src="/assets/logo-white-coral.svg" alt="Printfee" style={{ height: 20, alignSelf: 'flex-start' }} />
+          <img src={asset('assets/logo-white-coral.svg')} alt="Printfee" style={{ height: 20, alignSelf: 'flex-start' }} />
           <p style={{ fontSize: 14.5, fontWeight: 300, lineHeight: 1.6, color: 'var(--pf-text-dim-65)', maxWidth: '28ch' }}>
             Печать футболок с твоим дизайном. Казань, доставка по всей России.
           </p>

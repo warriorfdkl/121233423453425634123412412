@@ -1,5 +1,6 @@
 import type { Decal } from '../data/types';
 import { DecalMark } from './DecalMark';
+import { asset } from '../lib/asset';
 
 interface GarmentPreviewProps {
   name: string;
@@ -23,7 +24,7 @@ export function GarmentPreview({ name, tintFilter, decal, decalBackground }: Gar
         }}
       >
         <img
-          src="/assets/garment-tshirt-front.png"
+          src={asset('assets/garment-tshirt-front.png')}
           alt={name}
           style={{ width: '100%', height: '100%', objectFit: 'contain', filter: tintFilter }}
         />

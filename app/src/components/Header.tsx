@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useAppState } from '../context/AppStateContext';
 import { BagIcon, BurgerIcon, PersonIcon, StarIcon } from './icons';
+import { asset } from '../lib/asset';
 
 // Real routes get NavLink's active-highlight; same-page hash anchors
 // (Новости/Контакты just scroll within the home page) never should — they
@@ -36,7 +37,7 @@ export function Header() {
       <div className="pf-header__row">
         <div className="pf-header__left">
           <Link to="/" style={{ display: 'flex', flex: 'none' }}>
-            <img src="/assets/logo-white-coral.svg" alt="Printfee" style={{ height: 24, display: 'block' }} />
+            <img src={asset('assets/logo-white-coral.svg')} alt="Printfee" style={{ height: 24, display: 'block' }} />
           </Link>
           <nav className="pf-nav-links">
             {routeLinks.map((link) => (

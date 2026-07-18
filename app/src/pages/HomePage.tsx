@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useWaveCanvas } from '../hooks/useWaveCanvas';
 import { useScrollFan } from '../hooks/useScrollFan';
 import { useMorphLoop } from '../hooks/useMorphLoop';
+import { asset } from '../lib/asset';
 import './HomePage.css';
 
 // Словарь страницы (см. PRODUCT.md): «картинка» — то, что приносит человек,
@@ -50,7 +51,7 @@ const stats = [
 ];
 
 // мемы для петли «фото → футболка» под кнопкой; расписание — в useMorphLoop
-const morphPrints = ['/assets/morph-print-1.jpg', '/assets/morph-print-2.jpg', '/assets/morph-print-3.jpg'];
+const morphPrints = [asset('assets/morph-print-1.jpg'), asset('assets/morph-print-2.jpg'), asset('assets/morph-print-3.jpg')];
 
 const news = [
   { title: 'Открыли доставку по всей России от 2 дней', date: '28 июня 2026' },
@@ -129,7 +130,7 @@ export function HomePage() {
           текстом и футболкой оставался мёртвый стык, где она обрывалась */}
       <canvas ref={waveRef} className="hero__wave" />
       <div className="hero">
-        <img src="/assets/childhood-photos-2.png" alt="" className="hero__photo" />
+        <img src={asset('assets/childhood-photos-2.png')} alt="" className="hero__photo" />
         <div
           style={{
             position: 'absolute',
@@ -155,7 +156,7 @@ export function HomePage() {
           высота волны в герое (.hero__wave) откалибрована под его контент. */}
       <div className="pf-morph pf-mob" ref={morphRef} aria-hidden="true">
         <div className="pf-morph__stage">
-          <img src="/assets/morph-tee.png" alt="" className="pf-morph__tee" />
+          <img src={asset('assets/morph-tee.png')} alt="" className="pf-morph__tee" />
           {morphPrints.map((src) => (
             <img key={src} src={src} alt="" className="pf-morph__print" decoding="async" />
           ))}

@@ -13,6 +13,10 @@ assets/tshirt.original.glb
 # дубли рабочей модели: канонический файл — app/public/assets/tshirt.glb
 assets/tshirt.glb
 
+# служебные артефакты инструментов, а не часть проекта
+.playwright-mcp/
+.impeccable/hook.cache.json
+
 .DS_Store
 *.local
 .vite/

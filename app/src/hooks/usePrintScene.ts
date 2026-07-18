@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
 import type { Layer } from './useLayers';
+import { asset } from '../lib/asset';
 
 export type SceneStatus = 'loading' | 'ready' | 'error';
 
@@ -105,7 +106,7 @@ export function usePrintScene(canvasRef: React.RefObject<HTMLCanvasElement | nul
 
     const loader = new GLTFLoader();
     loader.load(
-      '/assets/tshirt.glb',
+      asset('assets/tshirt.glb'),
       (gltf) => {
         if (!live) return;
         const root = gltf.scene;
@@ -157,7 +158,7 @@ export function usePrintScene(canvasRef: React.RefObject<HTMLCanvasElement | nul
         group.add(root);
 
         if (options.decorative) {
-          const decalTex = new THREE.TextureLoader().load('/assets/icon-white.svg');
+          const decalTex = new THREE.TextureLoader().load(asset('assets/icon-white.svg'));
           const decalMat = new THREE.MeshBasicMaterial({
             map: decalTex,
             transparent: true,

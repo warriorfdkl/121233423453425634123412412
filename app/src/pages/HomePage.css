@@ -64,7 +64,7 @@
   z-index: 2;
   max-width: 1800px;
   margin: 0 auto;
-  padding: 0 clamp(20px, 3vw, 48px);
+  padding: 0 var(--pf-gutter);
 }
 .hero__title {
   margin: 0 0 40px;
@@ -120,14 +120,14 @@
 .section {
   max-width: 1800px;
   margin: 0 auto;
-  padding: 0 clamp(20px, 3vw, 48px);
+  padding: 0 var(--pf-gutter);
 }
 .services-section {
   padding-bottom: clamp(56px, 12vw, 140px);
 }
 
 .hero-intro {
-  padding: clamp(64px, 14vw, 140px) clamp(20px, 3vw, 48px) clamp(56px, 10vw, 120px);
+  padding: clamp(64px, 14vw, 140px) var(--pf-gutter) clamp(56px, 10vw, 120px);
 }
 @media (max-width: 760px) {
   .hero-intro {
@@ -476,7 +476,7 @@
   }
 
   .hero-brief {
-    padding: 4px clamp(20px, 3vw, 48px) 28px;
+    padding: 4px var(--pf-gutter) 28px;
   }
   /* Проза набрана Onest, а не моноширинным. Причина не вкусовая: основной
      текст обязан быть от 16px, а моно на этом кегле даёт ~36 символов в
@@ -506,7 +506,8 @@
   .hero-brief__stat {
     display: flex;
     align-items: baseline;
-    gap: 14px;
+    /* зазор тоже резиновый: на 320px 14px забирали заметную долю строки */
+    gap: 2px clamp(10px, 3.5vw, 16px);
     padding: 9px 0;
     border-top: 1px solid var(--pf-border);
   }
@@ -515,12 +516,14 @@
   }
   .hero-brief__value {
     flex: none;
-    /* фиксированная колонка, чтобы подписи начинались по одной линии.
-       10ch — по самой длинной строке («50+ стирок»), иначе она переносится */
+    /* Колонка держит подписи на одной линии, ширина — по самой длинной строке
+       («50+ СТИРОК»). В ch, поэтому сжимается вместе с кеглем: на 320px
+       фиксированные 10ch при 23px съедали 127px из 265 доступных, и подпись
+       ломалась на три строки. */
     width: 10ch;
     font-family: var(--pf-font-display);
     font-weight: 700;
-    font-size: 1.4375rem;
+    font-size: clamp(1.125rem, 5.6vw, 1.4375rem);
     line-height: 1.05;
     /* на плакатном кегле трекинг 0 держится сам, но на 19-23px узкий капс
        слипается — «50+ СТИРОК» первым делом */
@@ -813,7 +816,7 @@
 @media (max-width: 900px) {
   .pf-news-wrap {
     height: auto !important;
-    margin: 0 calc(-1 * clamp(20px, 3vw, 48px)) 0;
+    margin: 0 calc(-1 * var(--pf-gutter)) 0;
   }
   .pf-news-sticky {
     position: static !important;
@@ -822,7 +825,7 @@
     gap: 12px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 2px clamp(20px, 3vw, 48px) 18px;
+    padding: 2px var(--pf-gutter) 18px;
     scrollbar-width: none;
   }
   .pf-news-sticky::-webkit-scrollbar {

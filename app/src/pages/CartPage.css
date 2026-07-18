@@ -1,7 +1,7 @@
 .cart-grid {
   max-width: 1800px;
   margin: 0 auto;
-  padding: 40px clamp(20px, 3vw, 48px) 140px;
+  padding: 40px var(--pf-gutter) 140px;
 }
 .cart-grid__inner {
   display: grid;

@@ -2,7 +2,7 @@
 .catalog-pills {
   max-width: 1800px;
   margin: 0 auto;
-  padding: 28px clamp(20px, 3vw, 48px) 0;
+  padding: 28px var(--pf-gutter) 0;
 }
 .catalog-pills__row {
   display: flex;
@@ -32,7 +32,7 @@
 .catalog-body {
   max-width: 1800px;
   margin: 0 auto;
-  padding: 28px clamp(20px, 3vw, 48px) 140px;
+  padding: 28px var(--pf-gutter) 140px;
   display: grid;
   grid-template-columns: 264px 1fr;
   gap: 48px;

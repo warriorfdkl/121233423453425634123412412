@@ -1,7 +1,7 @@
 .builder {
   max-width: 1800px;
   margin: 0 auto;
-  padding: 40px clamp(20px, 3vw, 48px) 80px;
+  padding: 40px var(--pf-gutter) 80px;
 }
 .builder__grid {
   display: grid;

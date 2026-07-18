@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: space-between;
   gap: clamp(8px, 1.5vw, 28px);
-  padding: 0 clamp(20px, 3vw, 48px);
+  padding: 0 var(--pf-gutter);
   height: clamp(64px, 6vw, 80px);
 }
 
@@ -110,7 +110,7 @@
   background: var(--pf-bg);
   border-top: 1px solid var(--pf-border);
   border-bottom: 1px solid var(--pf-border);
-  padding: 8px clamp(20px, 3vw, 48px) 16px;
+  padding: 8px var(--pf-gutter) 16px;
   font-weight: 700;
   font-size: 16px;
 }
@@ -133,7 +133,7 @@
 /* ---- footer ---- */
 .pf-footer {
   border-top: 1px solid var(--pf-border);
-  padding: 48px clamp(20px, 3vw, 48px) 32px;
+  padding: 48px var(--pf-gutter) 32px;
 }
 .pf-footer__grid {
   max-width: 1800px;
